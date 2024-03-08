@@ -13,9 +13,29 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 <style>
-  .ck-editor__editable { height: 400px; }
+  .ck-editor__editable { height: 500px; }
   .ck-content { font-size: 12px; }
 </style>
+
+<script type="text/javascript">
+
+	function boardInsertChk(){
+		
+		if($("#title").val() == ''){
+			alert('게시물 제목을 입력해주세요.');
+			$("#title").focus();
+			return false;
+		}
+		
+		if(editor.getData() == ''){
+			alert('게시물 내용을 입력해주세요.');
+			editor.focus();
+			return false;
+		}
+		
+		return true;
+	}
+</script>
 
 </head>
 <body>
@@ -25,10 +45,28 @@
 <div id="main">
 
 	<div id="content_all">
-	<form name="" id="" method="post" action="/BoardInsert">
-	제목:<input type="text" name="title" id="title"></input>
-	<textarea id="editor" name="content"></textarea>
-	<input type="submit" value="등록하기"/>
+	<form name="" id="" method="post" action="/BoardInsert" onsubmit="return boardInsertChk();">
+		
+		<p>게시글 등록하기</p>
+		
+		<hr/>
+		
+		<div class="fields">
+			<label>제목</label>
+			<input type="text" name="title" id="title"></input>
+		</div>
+	
+		<div class="fields">
+			<label>내용</label>
+		</div>
+		
+		<div class="fields">
+			<textarea id="editor" name="content"></textarea>
+		</div>
+		
+		<input type="submit" value="등록하기" class="button" />
+		<input type="button" value="취소하기" class="button" onclick="location.href='/BoardList'"/>
+		
 	</form>
 	</div>
 	
@@ -36,8 +74,15 @@
 	<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
 	
     <script>
+    let editor;
     ClassicEditor.create( document.querySelector( '#editor' ), {
         language: "ko"
+      } )
+      .then( newEditor => {
+    	    editor = newEditor;
+      } )
+      .catch( error => {
+        console.error( error );
       } );
     </script>
 </div>

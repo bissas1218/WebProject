@@ -5,5 +5,6 @@ CREATE TABLE `board` (
   `seq` int(11) DEFAULT NULL,
   `title` varchar(100) DEFAULT NULL,
   `content` longtext DEFAULT NULL,
-  `reg_date` datetime DEFAULT NULL
+  `reg_date` datetime DEFAULT NULL,
+  `reg_id` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;

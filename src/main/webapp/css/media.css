@@ -54,6 +54,16 @@
 		font-size:1.05em;
 	}
 
+	#content_all {
+		max-width:900px;
+		min-height:900px;
+		background-color:#ffffff; 
+		border-radius:5px;
+		margin:10px auto;
+	}
+	
+	
+	
 	footer {
 		width:70%;
 		height:80px;

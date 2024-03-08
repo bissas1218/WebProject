@@ -43,14 +43,14 @@ public class BoardInsert extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		System.out.println(request.getParameter("content"));
+		//System.out.println(request.getParameter("content"));
 		
 		DBConnection dbconn = new DBConnection();
 		Connection con = dbconn.dbConn();
 		PreparedStatement pstmt = null;
 		
 		try {
-			String sql = "insert into board (seq, title, content, reg_date) values ((select ifnull(max(A.seq), 0)+1 from board A), ?, ?, now())";
+			String sql = "insert into board (seq, title, content, reg_date, reg_id) values ((select ifnull(max(A.seq), 0)+1 from board A), ?, ?, now(), 'admin')";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, request.getParameter("title"));
 			pstmt.setString(2, request.getParameter("content"));
