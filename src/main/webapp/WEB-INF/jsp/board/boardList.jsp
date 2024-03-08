@@ -20,6 +20,7 @@
 <div id="main">
 
 	<div id="content_all">
+	<a href="/BoardInsert">작성하기</a>
 	</div>
 	
 </div>

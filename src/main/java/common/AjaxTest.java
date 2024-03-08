@@ -13,6 +13,7 @@ import org.json.JSONObject;
 /**
  * Servlet implementation class AjaxTest
  */
+@WebServlet("/hello")
 public class AjaxTest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

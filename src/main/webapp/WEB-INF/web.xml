@@ -49,4 +49,34 @@
     <servlet-name>AjaxTest2</servlet-name>
     <url-pattern>/AjaxTest2</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BoardList</display-name>
+    <servlet-name>BoardList</servlet-name>
+    <servlet-class>board.BoardList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BoardList</servlet-name>
+    <url-pattern>/BoardList</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>header</display-name>
+    <servlet-name>header</servlet-name>
+    <servlet-class>common.header</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>header</servlet-name>
+    <url-pattern>/header</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BoardInsert</display-name>
+    <servlet-name>BoardInsert</servlet-name>
+    <servlet-class>board.BoardInsert</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BoardInsert</servlet-name>
+    <url-pattern>/BoardInsert</url-pattern>
+  </servlet-mapping>
 </web-app>

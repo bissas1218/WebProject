@@ -208,7 +208,7 @@ function ajaxPostHashMap(){
 </head>
 <body>
 
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="/header"></jsp:include>
 
 <div id="main">
 
@@ -245,7 +245,7 @@ function ajaxPostHashMap(){
 		</div>
 	<div id="content2">
 		<div class="board_list">
-			<p>공지사항</p>
+			<p>공지사항 <a href="BoardList">+</a></p>
 			<ul>
 			<c:forEach items="${titleList}" var="i" varStatus="status">
 				<li>${seqList[status.index]}. ${i}</li>
