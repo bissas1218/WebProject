@@ -1,3 +1,7 @@
+ㅇ 라이브러리
+ - jstl : jakarta.servlet.jsp.jstl-3.0.1.jar, jakarta.servlet.jsp.jstl-api-3.0.0.jar
+ - java json : json-20240303.jar
+
 ㅇ GitHub에 프로젝트 올리기
  - https://github.com/ 에 접속, bissas@naver.com / qusehd#82 로그인
  - New repository 클릭, Repository이름 입력 후 생성
