@@ -13,8 +13,10 @@
 <link rel="stylesheet" href="css/main.css" />
 <link rel="stylesheet" href="css/media.css" />
 <link rel="stylesheet" href="css/calendar.css" />
-
+<!-- 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+ -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 
 <script type="text/javascript">
@@ -127,6 +129,80 @@ $('.go-next').on('click', function() {
 });
 }
 
+function ajaxGetString(){
+	
+	$.ajax({    
+		type : 'get',           // 타입 (get, post, put 등등)    
+		url : '/AjaxTest',           // 요청할 서버url    
+	//	async : true,            // 비동기화 여부 (default : true)    
+		contentType:"application/json",
+		dataType : 'json',       // 데이터 타입 (html, xml, json, text 등등)    
+		data : {no:"한글명", age:"22222"},
+		success:function(data){
+            console.log(data); // [object Object]
+            console.log(JSON.stringify(data)); // {"str":"안녕하세요"}
+            console.log(data.str); // 안녕하세요
+        },   
+		error : function(request, status, error) { // 결과 에러 콜백함수        
+			console.log('error!!!'+error)    
+			}
+	})
+}
+
+function ajaxPostObject(){
+	
+	$.ajax({
+        url:"./AjaxTest", // HelloServlet.java로 접근
+        type: "post", // GET 방식
+        success:function(data){
+        	console.log(data); // [object Object]
+        	console.log(JSON.stringify(data)); // {"human":{"age":24,"name":"홍길동"}}
+        	console.log(data.human.name); // 홍길동
+        	console.log(data.human.age); // 24
+        },
+        error:function(){
+            alert("error");
+        }
+        
+    });
+}
+
+function ajaxGetList(){
+	
+	$.ajax({
+        url:"./AjaxTest2", // HelloServlet.java로 접근
+        type: "get", // GET 방식
+        success:function(data){
+        	console.log(data); // [object Object]
+        	console.log(JSON.stringify(data)); // {"list":[{"age":24,"name":"홍길동"},{"age":16,"name":"성춘향"},{"age":22,"name":"홍두께"}]}
+        	console.log(data.list[1].name); // 성춘향
+        	console.log(data.list[0].age); // 24
+        },
+        error:function(){
+            alert("error");
+        }
+        
+    });
+}
+
+function ajaxPostHashMap(){
+	
+	$.ajax({
+        url:"./AjaxTest2", // HelloServlet.java로 접근
+        type: "post", // GET 방식
+        success:function(data){
+        	console.log(data); // [object Object]
+        	console.log(JSON.stringify(data)); // {"map":{"mylist":[{"age":24,"name":"홍길동"},{"age":16,"name":"성춘향"}],"title":"안녕하세요"}}
+        	console.log(data.map.mylist[1].name); // 성춘향
+        	console.log(data.map.title); // 안녕하세요
+        },
+        error:function(){
+            alert("error");
+        }
+        
+    });
+}
+
 </script>
 
 </head>
@@ -210,7 +286,12 @@ $('.go-next').on('click', function() {
 	<div id="content1">${aaa }</div>
 	<div id="content1"><c:forEach var="i" items="${seqList}"><c:out value="${i}"/></c:forEach></div>
 	<div id="content1">
-		
+		<ul>
+			<li><a href="javascript:ajaxGetString();">Ajax String</a></li>
+			<li><a href="javascript:ajaxPostObject();">Ajax Object</a></li>
+			<li><a href="javascript:ajaxGetList();">Ajax list</a></li>
+			<li><a href="javascript:ajaxPostHashMap();">Ajax HashMap</a></li>
+		</ul>
 	</div>
 	<div id="content_2"></div>
 	<div id="content1"></div>

@@ -4,3 +4,7 @@
  - 이클립스 Window > Show View > Other > Git > Git Repositories Open
  - Clone a Git repository 선택, Clone URI > 로컬프로젝트 선택 > Next > Finish
  - 프로젝트 우클릭 > Team > Share Project, Team > Commit Staged Changes로 이동 후 Commit and Push
+ - GitHub Settins > Developer settings > Personal access tokens > 토큰생성
+ 
+ ㅇ GitHub에 프로젝트 받기
+ 

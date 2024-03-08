@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" version="5.0">
-  
   <display-name>WebProject</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
@@ -29,5 +28,25 @@
   <servlet-mapping>
     <servlet-name>Main</servlet-name>
     <url-pattern>/Main</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AjaxTest</display-name>
+    <servlet-name>AjaxTest</servlet-name>
+    <servlet-class>common.AjaxTest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AjaxTest</servlet-name>
+    <url-pattern>/AjaxTest</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AjaxTest2</display-name>
+    <servlet-name>AjaxTest2</servlet-name>
+    <servlet-class>common.AjaxTest2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AjaxTest2</servlet-name>
+    <url-pattern>/AjaxTest2</url-pattern>
   </servlet-mapping>
 </web-app>
