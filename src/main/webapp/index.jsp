@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="refresh" content="0; url=/Main"></meta>
-<title>환영합니다.</title> 
+<title>환영합니다.</title>  
 
 </head>
 <body>
