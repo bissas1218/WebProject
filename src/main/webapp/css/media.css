@@ -252,6 +252,18 @@
 		min-height:700px;
 	}
 	
+	header #wrap .logo {
+		width:50%;
+	}
+	
+	header #wrap .menu {
+		display:none;
+	}
+	
+	header #wrap .login {
+		width:50%;
+	}
+	
 	#content_all {
 		max-width:90%;
 		min-height:900px;

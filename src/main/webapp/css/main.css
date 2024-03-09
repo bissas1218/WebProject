@@ -23,28 +23,51 @@ header #wrap {
 }
 
 header #wrap .logo {
-	background-color:green;
-	width:200px;
+	background-color:#ffffff;
+	width:20%;
 	height:40px;
 }
 
 header #wrap .menu {
-	background-color:pink;
-	width:550px;
+	margin:0;
+	padding:0;
+	background-color:#ffffff;
+	width:60%;
 	height:40px;
 }
 
-header #wrap .search {
-	background-color:orange;
-	width:300px;
-	height:40px;
+header #wrap .menu ul {
+	padding:0;
+	margin:0;
+	list-style:none;
+}
+
+header #wrap .menu ul li {
+	padding:8px 5% 0 0;
+	margin:0;
+	float:left;
+	font-size:1.0em;
 }
 
 header #wrap .login {
-	background-color:pink;
-	width:200px;
-	height:40px;
+	background-color:#ffffff;
+	width:20%;
+	height:40px; 
 }
+
+header #wrap .login ul {
+	padding:0;
+	margin:0;
+	list-style:none;
+}
+
+header #wrap .login ul li {
+	padding:12px 5% 0 0;
+	margin:0;
+	float:right;
+	font-size:0.9em;
+}
+
 
 #main {
 	background-color:rgba(150,150,150, 0.8);
@@ -82,7 +105,7 @@ header #wrap .login {
 	margin:8px;
 	max-width:100%;
 	font-weight:bold;
-	font-size:1.3em;
+	font-size:1.2em;
     white-space: normal;
     display:-webkit-box;
     -webkit-line-clamp:3;
