@@ -9,7 +9,7 @@
  - Clone a Git repository 선택, Clone URI > 로컬프로젝트 선택 > Next > Finish
  - 프로젝트 우클릭 > Team > Share Project, Team > Commit Staged Changes로 이동 후 Commit and Push
  - GitHub Settins > Developer settings > Personal access tokens > 토큰생성
- - 토큰값 : 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 
+ - 토큰값 : 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 
  
  ㅇ GitHub에 프로젝트 받기
  - Clone a Git repository 선택, Clone URI > 로컬프로젝트 선택 > Next > Finish  
