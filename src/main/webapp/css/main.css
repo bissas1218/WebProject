@@ -275,6 +275,49 @@ header #wrap .login ul li {
 		border-radius:5px;
 	}
 	
+	/* 메인 공지사항 start */
+	#content2 .board_list p {
+		padding:10px;
+		margin:0;
+		height:30px;
+		font-weight:bold;	
+		font-size:1.2em;
+		color:#6e6e6e;
+	}
+	
+	#content2 .board_list hr {
+		width:97%;
+		padding-top:0;
+		margin-top:0;
+	}
+	
+	#content2 .board_list .title_list div:nth-child(1) {
+		margin:0;
+		padding:0 0 0 10px;
+		display: inline-block; /* block요소인 div를 inline으로 만들어준다. */
+    	width: 78%;
+    	text-align: left; /* 안의 내용 글자 정렬 */
+  		white-space: nowrap;
+  		overflow: hidden;
+  		text-overflow: ellipsis;
+	}
+	#content2 .board_list .title_list div:nth-child(2) {
+		margin:0;
+		padding:0;
+		display: inline-block; /* block요소인 div를 inline으로 만들어준다. */
+    	width: 18%;
+    	text-align: right; /* 안의 내용 글자 정렬 */
+    	white-space: nowrap;
+  		overflow: hidden;
+  		color:#6e6e6e; 
+	}
+	
+	#content2 .board_list .title_list a {
+		text-decoration-line: none;
+		color:#6e6e6e; 
+	}
+	/* 메인 공지사항 end */
+	
 	footer {
 		background-color:rgba(150,150,150,0.7);
 		border-radius: 10px;

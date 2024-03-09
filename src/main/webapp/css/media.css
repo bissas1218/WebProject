@@ -128,16 +128,7 @@
 		float:left;
 	}
 	
-	#content2 .board_list p {
-		font-weight:bold;	
-		font-size:1.2em;
-		padding-left:20px;
-	}
 	
-	#content2 .board_list li {
-		line-height:1.8;
-		font-size:1.05em;
-	}
 
 	#boardList .paging_normal {
 		display:block;
@@ -411,6 +402,22 @@
 		display:block;
 	}
 	
+	/* 메인 공지사항 start */
+	#content2 .board_list .title_list div:nth-child(1) {
+		margin:0;
+		padding:0 0 0 10px;
+		display: inline-block; /* block요소인 div를 inline으로 만들어준다. */
+    	width: 90%;
+    	text-align: left; /* 안의 내용 글자 정렬 */
+  		white-space: nowrap;
+  		overflow: hidden;
+  		text-overflow: ellipsis;
+	}
+	#content2 .board_list .title_list div:nth-child(2) {
+		display:none;
+	}
+	/* 메인 공지사항 end */
+	
 	footer {
 		width:98%;
 		height:80px;
@@ -513,6 +520,22 @@
 	#boardList .paging_mini {
 		display:block;
 	}
+	
+	/* 메인 공지사항 start */
+	#content2 .board_list .title_list div:nth-child(1) {
+		margin:0;
+		padding:0 0 0 10px;
+		display: inline-block; /* block요소인 div를 inline으로 만들어준다. */
+    	width: 90%;
+    	text-align: left; /* 안의 내용 글자 정렬 */
+  		white-space: nowrap;
+  		overflow: hidden;
+  		text-overflow: ellipsis;
+	}
+	#content2 .board_list .title_list div:nth-child(2) {
+		display:none;
+	}
+	/* 메인 공지사항 end */
 	
 	footer {
 		width:98%;

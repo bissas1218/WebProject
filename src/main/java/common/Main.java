@@ -13,6 +13,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+
+import board.BoardVO;
 
 /**
  * Servlet implementation class Main
@@ -42,22 +45,25 @@ public class Main extends HttpServlet {
 		ResultSet rs = null;
 		
 		try {
-			String sql = "select * from board order by reg_date desc limit 0, 5";
+			String sql = "select seq, title, content, date_format(reg_date, '%Y-%m-%d'), reg_id from board order by reg_date desc limit 0, 9";
 
 			pstmt = con.prepareStatement(sql);
 
 			rs = pstmt.executeQuery();
-			ArrayList<String> seqList = new ArrayList<String>();
-			ArrayList<String> titleList = new ArrayList<String>();
+			
+			List<BoardVO> boardList = new ArrayList<BoardVO>();
 			
 			while (rs.next()) {
-			//	System.out.println(rs.getString(1)+", "+rs.getString(2));
-				seqList.add(rs.getString(1));
-				titleList.add(rs.getString(2));
+				BoardVO boardVO = new BoardVO();
+				boardVO.setSeq(rs.getString(1));
+				boardVO.setTitle(rs.getString(2));
+				boardVO.setContent(rs.getString(3));
+				boardVO.setRegDate(rs.getString(4));
+				boardVO.setRegId(rs.getString(5));
+				boardList.add(boardVO);
 			}
 
-			request.setAttribute("seqList", seqList);
-			request.setAttribute("titleList", titleList);
+			request.setAttribute("boardList", boardList);
 			
 		} catch (SQLException e) {
 			System.out.println("error: " + e);
