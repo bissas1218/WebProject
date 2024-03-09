@@ -167,7 +167,7 @@ header #wrap .login {
 	    border-radius: 4px;
 	    border: none;
 	    border: solid 1px;
-	    color:#9b9b9b;
+	    color:#c0c0c0;
 	    outline: 0;
 	    padding: 0 0.825rem;
 	    text-decoration: none;
@@ -178,7 +178,7 @@ header #wrap .login {
 	#content_all input[type="text"]:focus {
 		outline-color: transparent;
     	outline-style:solid;
-    	box-shadow: 0 0 0 2px #616161;
+    	box-shadow: 0 0 0 2px #969696;
 	}
 	
 	#content_all .fields textarea {
@@ -188,7 +188,7 @@ header #wrap .login {
 	#content_all .button {
 		margin:0 0 0 10px;
 		border-radius: 10px;
-		background-color:#04AA6D;
+		background-color:#c0c0c0;
 		color:#ffffff;
 		border:none;
 		min-height:40px;
@@ -198,7 +198,7 @@ header #wrap .login {
 	}
 	
 	#content_all .button:hover {
-		background-color:#038C5A;
+		background-color:#969696;
 		transition: 0.7s;
 	}
 	
@@ -225,13 +225,31 @@ header #wrap .login {
     	color:#616161;
 	}
 	
-	#boardList table tfoot {
+	#boardList .paging_normal {
+		height:60px;
+		width:100%;
 		text-align:center;
+		font-size:1.2em;
 	}
 	
-	#boardList table tfoot tr {
-		height:50px;
+	#boardList .paging_mini {
+		height:60px;
+		width:100%;
+		text-align:center;
 		font-size:1.2em;
+	}
+	
+	#boardList a {
+		padding:7px;
+		text-decoration-line: none;
+		color:#54545c;
+	}
+	
+	#boardList .paging_normal .active {
+		text-align:center;
+		font-weight:bold;
+		background-color:#c0c0c0;
+		border-radius:5px;
 	}
 	
 	footer {

@@ -18,7 +18,7 @@ public class DBConnection {
 
             con = DriverManager.getConnection(url, user, pwd);
             if(con != null) {
-                System.out.println("연결 성공");
+                //System.out.println("연결 성공");
             }
         } catch(Exception e) {
             System.out.println("연결 오류 발생!");

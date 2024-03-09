@@ -49,17 +49,32 @@
 				</c:forEach>
 					
 				</tbody>
-				<tfoot>
-					<tr>
-						<td colspan="4">
-						<c:forEach begin="1" end="${pageCnt}" step="1" var="pageNum" varStatus="status">
-							<c:set var="pageLimit" value="${pageNum-1}" />
-							<a href="/BoardList?pageNum=${pageLimit * pageListSize}">${pageNum}</a>
-						</c:forEach>
-						</td>
-					</tr>
-				</tfoot>
+				
 			</table>
+			
+			<div class="paging_normal">
+					<c:if test="${currentPageBlock ne '1'}">
+					<a href="/BoardList?pageNum=<c:out value="${startPageNum - 1}"/>">Prev</a>
+					</c:if>
+					<c:forEach begin="${startPageNum}" end="${endPageNum}" step="1" var="pageNum" varStatus="status">
+						<a href="/BoardList?pageNum=${pageNum}" <c:if test="${currentPageNum eq pageNum}">class="active"</c:if>>
+							${pageNum}
+						</a>
+					</c:forEach>
+					<c:if test="${currentPageBlock ne totalPageBlock}">
+					<a href="/BoardList?pageNum=${endPageNum + 1}">Next</a>
+					</c:if>
+			</div>
+			<div class="paging_mini">
+					<c:if test="${currentPageNum ne '1'}">
+					<a href="/BoardList?pageNum=<c:out value="${currentPageNum - 1}"/>">Prev</a>
+					</c:if>
+					&nbsp;&nbsp;&nbsp;
+					<c:if test="${currentPageNum ne totalPageCnt}">
+					<a href="/BoardList?pageNum=${currentPageNum + 1}">Next</a>
+					</c:if>
+			</div>
+				
 		</div>
 		
 		<input type="button" value="작성하기" onclick="location.href='/BoardInsert'" class="button" />

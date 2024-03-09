@@ -36,13 +36,13 @@ public class Main extends HttpServlet {
 		
 		DBConnection dbcon = new DBConnection();
 		Connection con = dbcon.dbConn();
-		System.out.println(con);
+	//	System.out.println(con);
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
-			String sql = "select * from board";
+			String sql = "select * from board order by reg_date desc limit 0, 5";
 
 			pstmt = con.prepareStatement(sql);
 
@@ -51,7 +51,7 @@ public class Main extends HttpServlet {
 			ArrayList<String> titleList = new ArrayList<String>();
 			
 			while (rs.next()) {
-				System.out.println(rs.getString(1)+", "+rs.getString(2));
+			//	System.out.println(rs.getString(1)+", "+rs.getString(2));
 				seqList.add(rs.getString(1));
 				titleList.add(rs.getString(2));
 			}

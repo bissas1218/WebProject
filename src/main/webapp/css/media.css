@@ -62,7 +62,13 @@
 		margin:10px auto;
 	}
 	
+	#boardList .paging_normal {
+		display:block;
+	}
 	
+	#boardList .paging_mini {
+		display:none;
+	}
 	
 	footer {
 		width:70%;
@@ -133,6 +139,14 @@
 		font-size:1.05em;
 	}
 
+	#boardList .paging_normal {
+		display:block;
+	}
+	
+	#boardList .paging_mini {
+		display:none;
+	}
+	
 	footer {
 		width:70%;
 		height:80px;
@@ -199,6 +213,14 @@
 		float:left;
 	}
 	
+	#boardList .paging_normal {
+		display:block;
+	}
+	
+	#boardList .paging_mini {
+		display:none;
+	}
+	
 	footer {
 		width:98%;
 		height:80px;
@@ -263,6 +285,14 @@
 		margin:10px 0 0 10px;
 		border-radius:5px;
 		float:left;
+	}
+	
+	#boardList .paging_normal {
+		display:block;
+	}
+	
+	#boardList .paging_mini {
+		display:none;
 	}
 	
 	footer {
@@ -361,6 +391,14 @@
         text-overflow: ellipsis;
 	}
 	
+	#boardList .paging_normal {
+		display:none;
+	}
+	
+	#boardList .paging_mini {
+		display:block;
+	}
+	
 	footer {
 		width:98%;
 		height:80px;
@@ -454,6 +492,14 @@
 		padding:10px;
 		max-width:100%;
 		max-height:100%;
+	}
+	
+	#boardList .paging_normal {
+		display:none;
+	}
+	
+	#boardList .paging_mini {
+		display:block;
 	}
 	
 	footer {

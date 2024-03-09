@@ -6,6 +6,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import common.DBConnection;
+import common.PageNumberVO;
+import common.PageNumbering;
 
 /**
  * Servlet implementation class BoardList
@@ -39,54 +44,58 @@ public class BoardList extends HttpServlet {
 		Connection con = dbconn.dbConn();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		int pageListSize = 10;
 		
-		int pageNum = 0;
-		if(request.getParameter("pageNum") != null) {
-			pageNum = Integer.parseInt(request.getParameter("pageNum"));
-		}
-		System.out.println("pageNum:"+pageNum);
-		
+		// 페이징처리
+		PageNumberVO pageNumVO = new PageNumberVO(10, 10, request.getParameter("pageNum"));
+
 		try {
-			String sql = "select * from board order by reg_date desc limit ?, ?";
+			
+			String sql = "select count(*) from board";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			rs.next();
+			
+			pageNumVO.setTotalCnt(rs.getInt(1));
+			
+			pstmt.close();
+			rs.close();
+			
+			/* 페이징처리 start */
+			PageNumbering pageNumbering = new PageNumbering();
+			pageNumVO = pageNumbering.pagingProcess(pageNumVO);
+			
+			request.setAttribute("currentPageBlock", pageNumVO.getCurrentPageBlock());
+			request.setAttribute("totalPageBlock", pageNumVO.getTotalPageBlock());
+			request.setAttribute("totalPageCnt", pageNumVO.getTotalPageCnt()); 
+			request.setAttribute("startPageNum", pageNumVO.getStartPageNum()); 
+			request.setAttribute("endPageNum", pageNumVO.getEndPageNum()); 
+			request.setAttribute("currentPageNum", pageNumVO.getCurrentPageNum());
+			/* 페이징처리 end */
+			
+			
+			sql = "select * from board order by reg_date desc limit ?, ?";
 
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, pageNum);
-			pstmt.setInt(2, pageListSize);
+			
+			pstmt.setInt(1, pageNumVO.getPageNum());
+			pstmt.setInt(2, pageNumVO.getPageListSize());
 			
 			rs = pstmt.executeQuery();
 			
-			List<BoardVO> list = new ArrayList<BoardVO>();
+			List<BoardVO> boardList = new ArrayList<BoardVO>();
 			
 			while (rs.next()) {
-				//System.out.println(rs.getString(1)+", "+rs.getString(2)+", "+rs.getString(3)+", "+rs.getString(4));
 				BoardVO boardVO = new BoardVO();
 				boardVO.setSeq(rs.getString(1));
 				boardVO.setTitle(rs.getString(2));
 				boardVO.setContent(rs.getString(3));
 				boardVO.setRegDate(rs.getString(4));
 				boardVO.setRegId(rs.getString(5));
-				list.add(boardVO);
+				boardList.add(boardVO);
 			}
 
-			request.setAttribute("boardList", list);
-			
-			pstmt.close();
-			rs.close();
-			
-			sql = "select count(*) from board";
-			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			rs.next();
-			
-			int totalCnt = rs.getInt(1);
-			int pageCnt = totalCnt/pageListSize;
-			if(totalCnt%pageListSize > 0) {
-				pageCnt++;
-			}
-			
-			request.setAttribute("pageListSize", pageListSize);
-			request.setAttribute("pageCnt", pageCnt);
+			request.setAttribute("boardList", boardList);
+
 			
 		} catch (SQLException e) {
 			System.out.println("error: " + e);
