@@ -212,61 +212,6 @@ function ajaxPostHashMap(){
 
 <div id="main">
 
-	<div id="content2">
-		<div class="banner">
-			<img src="/images/test.jpg" alt="">
-		</div>
-	</div>
-	<div id="content1">
-		
-			<div class="picture">
-				<a href="/ViewDetail">
-					<img src="/images/green.jpg" />
-				</a>
-			</div>
-			<div class="title">
-				<p>2024-03-06, 홍길동</p>
-				<p>적어도 하나의 JAR가 TLD들을 찾기 위해 스캔되었으나 아무 것도 찾지 못했습니다. 스캔했으나 TLD가 없는 JAR들의 전체 목록을 보시려면, 로그 레벨을 디버그 레벨로 설정하십시오.</p>
-			</div>
-		
-	</div>
-	<div id="content1">
-		<p>차트</p>
-		<canvas id="myChart"></canvas>
-	</div>
-	<div id="content1">
-		<div class="picture">
-				<img src="/images/RW193CV.jpg" />
-			</div>
-			<div class="title">
-			<p>2024-03-06, 관리자</p>
-			<p>알고리즘을 사용하여, 세션 ID를 생성하기 위한 SecureRandom 객체를 생성하는데, [189] 밀리초가 소요됐습니다.</p>
-			</div>
-	</div>
-	<div id="content2">
-		<div class="board_list">
-			<p>공지사항 <a href="BoardList"><img src="/images/plus_icon.png" width="19" height="19" /></a></p>
-			<hr/>
-			<c:forEach items="${boardList}" var="boardList" varStatus="status">
-			<div class="title_list">
-				<div>
-					<a href="/BoardView?seq=<c:out value="${boardList.seq}" />" >
-						<c:out value="${boardList.title}" />
-					</a></div>
-				<div>
-					[<c:out value="${boardList.regDate}" />]
-				</div>
-			</div>
-			</c:forEach>
-			
-		</div>
-	</div>
-	<div id="content1">
-		<div class="banner">
-			<img src="/images/test.jpg" alt="">
-		</div>
-	</div>
-	
 	<!-- calendar -->
 	<div id="content_2">
 		<p class="title">예약현황</p>
@@ -291,6 +236,68 @@ function ajaxPostHashMap(){
 		</div>
 		<p class="content">예약건수 : 999, 예약가능건수 : 999</p>
 	</div>
+	
+	<div id="content2">
+		<div class="banner">
+			<img src="/images/test.jpg" alt="">
+		</div>
+	</div>
+	
+	<div id="content1">
+		
+			<div class="picture">
+				<a href="/ViewDetail">
+					<img src="/images/green.jpg" />
+				</a>
+			</div>
+			<div class="title">
+				<p>2024-03-06, 홍길동</p>
+				<p>적어도 하나의 JAR가 TLD들을 찾기 위해 스캔되었으나 아무 것도 찾지 못했습니다. 스캔했으나 TLD가 없는 JAR들의 전체 목록을 보시려면, 로그 레벨을 디버그 레벨로 설정하십시오.</p>
+			</div>
+	</div>
+	
+	<!-- 공지사항 -->
+	<div id="content2">
+		<div class="board_list">
+			<p>공지사항 <a href="BoardList"><img src="/images/plus_icon.png" width="19" height="19" /></a></p>
+			<hr/>
+			<c:forEach items="${boardList}" var="boardList" varStatus="status">
+			<div class="title_list">
+				<div>
+					<a href="/BoardView?seq=<c:out value="${boardList.seq}" />" >
+						<c:out value="${boardList.title}" />
+					</a></div>
+				<div>
+					[<c:out value="${boardList.regDate}" />]
+				</div>
+			</div>
+			</c:forEach>
+			
+		</div>
+	</div>
+	
+	<div id="content1">
+		<p>차트</p>
+		<canvas id="myChart"></canvas>
+	</div>
+	
+	<div id="content1">
+		<div class="picture">
+				<img src="/images/RW193CV.jpg" />
+			</div>
+			<div class="title">
+			<p>2024-03-06, 관리자</p>
+			<p>알고리즘을 사용하여, 세션 ID를 생성하기 위한 SecureRandom 객체를 생성하는데, [189] 밀리초가 소요됐습니다.</p>
+			</div>
+	</div>
+	
+	<div id="content1">
+		<div class="banner">
+			<img src="/images/test.jpg" alt="">
+		</div>
+	</div>
+	
+	
 	<div id="content1">
 		
 			<div class="picture">

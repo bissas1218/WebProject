@@ -25,7 +25,7 @@
 	
 		<p class="viewTitle"><c:out value="${boardVO.title }" /></p>
 		<p class="reginfo">
-			<c:out value="${boardVO.regDate }" /> <c:out value="${boardVO.regId }" />
+			<c:out value="${boardVO.regDate }" /> <c:out value="${boardVO.regId }" /> 오후 11:05
 		</p>
 		
 		<div class="viewContent">
@@ -34,6 +34,7 @@
 		
 		<input type="button" value="목록보기" onclick="location.href='/BoardList'" class="button" />
 		<input type="button" value="수정하기" onclick="location.href='/BoardList'" class="button" />
+		<input type="button" value="삭제하기" onclick="location.href='/BoardList'" class="button" />
 		
 	</div>
 	
