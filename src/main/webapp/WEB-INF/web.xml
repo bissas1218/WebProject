@@ -89,4 +89,24 @@
     <servlet-name>BoardView</servlet-name>
     <url-pattern>/BoardView</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ckeditor5Upload</display-name>
+    <servlet-name>ckeditor5Upload</servlet-name>
+    <servlet-class>board.ckeditor5Upload</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ckeditor5Upload</servlet-name>
+    <url-pattern>/ckeditor5Upload</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>getImageForContents</display-name>
+    <servlet-name>getImageForContents</servlet-name>
+    <servlet-class>board.getImageForContents</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getImageForContents</servlet-name>
+    <url-pattern>/getImageForContents</url-pattern>
+  </servlet-mapping>
 </web-app>

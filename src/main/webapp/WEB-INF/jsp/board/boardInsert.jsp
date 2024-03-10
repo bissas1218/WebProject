@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="css/media.css" />
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="/js/uploadAdpater.js"></script>
 
 <style>
   .ck-editor__editable { height: 500px; }
@@ -74,9 +75,17 @@
 	<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
 	
     <script>
+    
+    function MyCustomUploadAdapterPlugin(editor) {
+        editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+            return new UploadAdapter(loader)
+        }
+    }
+
     let editor;
     ClassicEditor.create( document.querySelector( '#editor' ), {
-        language: "ko"
+        language: "ko",
+        extraPlugins: [MyCustomUploadAdapterPlugin]
       } )
       .then( newEditor => {
     	    editor = newEditor;
