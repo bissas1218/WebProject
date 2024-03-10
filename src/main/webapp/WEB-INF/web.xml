@@ -79,4 +79,14 @@
     <servlet-name>BoardInsert</servlet-name>
     <url-pattern>/BoardInsert</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BoardView</display-name>
+    <servlet-name>BoardView</servlet-name>
+    <servlet-class>board.BoardView</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BoardView</servlet-name>
+    <url-pattern>/BoardView</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -23,7 +23,7 @@
 
 	<div id="content_all">
 		
-		<p>게시글 목록</p>
+		<p class="boardTitle">게시글 목록</p>
 		
 		<hr/>
 		
@@ -42,7 +42,11 @@
 				<c:forEach items="${boardList}" var="boardList">
 					<tr>
 						<td align="center"><c:out value="${boardList.seq}" /></td>
-						<td><c:out value="${boardList.title}" /></td>
+						<td>
+							<a href="/BoardView?seq=<c:out value="${boardList.seq}" />">
+								<c:out value="${boardList.title}" />
+							</a>
+						</td>
 						<td align="center"><c:out value="${boardList.regId}" /></td>
 						<td align="center"><c:out value="${boardList.regDate}" /></td>
 					</tr>

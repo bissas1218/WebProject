@@ -47,7 +47,7 @@
 	<div id="content_all">
 	<form name="" id="" method="post" action="/BoardInsert" onsubmit="return boardInsertChk();">
 		
-		<p>게시글 등록하기</p>
+		<p class="boardTitle">게시글 등록하기</p>
 		
 		<hr/>
 		

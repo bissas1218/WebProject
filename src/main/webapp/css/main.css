@@ -163,19 +163,43 @@ header #wrap .login ul li {
 	font-weight:bold;
 }
 
-#content_all p {
-		font-size:1.3em;
-		font-weight:bold;
-		padding:20px;
-		color:#616161;
-	}
+/* 게시글보기 start */
+#content_all .boardTitle {
+	font-size:1.3em;
+	font-weight:bold;
+	padding:20px;
+	color:#616161;
+}
 	
-	#content_all hr {
-		width:97%;
-		border: 0;
-		height:1px;
-		background:#ccc;
-	}
+#content_all .viewTitle {
+	width:90%;
+	padding:20px 0 0 0;
+	margin:0 auto;
+	font-size:1.4em;
+	font-weight:bold;
+	color:#2d2d2d;
+}
+	
+#content_all .reginfo {
+	width:90%;
+	margin:0 auto;
+	padding:5px;	
+	font-size:0.9em;
+}	
+
+#content_all .viewContent {
+	margin:0 auto;
+	padding:0;
+	width:90%;
+}
+/* 게시글보기 end */
+
+#content_all hr {
+	width:97%;
+	border: 0;
+	height:1px;
+	background:#ccc;
+}
 	
 	#content_all .fields {
 		padding:10px;

@@ -73,7 +73,7 @@ public class BoardList extends HttpServlet {
 			/* 페이징처리 end */
 			
 			
-			sql = "select * from board order by reg_date desc limit ?, ?";
+			sql = "select seq, title, content, date_format(reg_date, '%Y-%m-%d'), reg_id from board order by reg_date desc limit ?, ?";
 
 			pstmt = con.prepareStatement(sql);
 			
