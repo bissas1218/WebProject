@@ -6,37 +6,25 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.List;
-
-import javax.imageio.ImageIO;
-
-import com.drew.imaging.ImageMetadataReader;
-import com.drew.imaging.jpeg.JpegMetadataReader;
-import com.drew.metadata.Directory;
-import com.drew.metadata.Metadata;
-import com.drew.metadata.exif.ExifIFD0Directory;
-import com.drew.metadata.exif.GpsDirectory;
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 /**
- * Servlet implementation class getImageForContents
+ * Servlet implementation class ImageResizeTest
  */
-public class getImageForContents extends HttpServlet {
+public class ImageResizeTest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public getImageForContents() {
+    public ImageResizeTest() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -45,73 +33,11 @@ public class getImageForContents extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("========================== getImageForContents ================================");
 		
-		String os = System.getProperty("os.name").toLowerCase();
-		//String path = System.getProperty("user.dir");
-        //System.out.println("os: " + os); 
-        String uploadPath = "";
-        
-        if (os.contains("win")) {
-            System.out.println("Windows");
-            uploadPath = "C:\\editor_img\\";
-        } else if (os.contains("mac")) {
-            System.out.println("Mac");
-
-        } else if (os.contains("nix") || os.contains("nux") || os.contains("aix")) {
-            System.out.println("Unix");
-            uploadPath = "/bissas2/editor_img/";
-        } else if (os.contains("linux")) {
-            System.out.println("Linux");
-            uploadPath = "/bissas2/editor_img/";
-        } else if (os.contains("sunos")) {
-            System.out.println("Solaris");
-        }
-        
-		String fileNm = request.getParameter("fileNm");
-		String fileStr = uploadPath; 
+		String fileStr = "C:\\editor_img\\";
+		String fileNm = "700013_KakaoTalk_20240311_131842112.jpg";
 		
-	    FileInputStream fis = null;
-	    BufferedInputStream in = null;
-	    ByteArrayOutputStream bStream = null;
-
-	    try {
-
-	        fis = new FileInputStream(new File(fileStr, fileNm));
-	        in = new BufferedInputStream(fis);
-	        bStream = new ByteArrayOutputStream();
-
-	        int imgByte;
-	        while ((imgByte = in.read()) != -1) {
-	            bStream.write(imgByte);
-	        }
-
-	        String type = "";
-	        String ext = fileNm.substring(fileNm.lastIndexOf(".") + 1).toLowerCase();
-
-	        if ("jpg".equals(ext)) {
-	            type = "image/jpeg";
-	        } else {
-	            type = "image/" + ext;
-	        }
-
-	        response.setHeader("Content-Type", type);
-	        response.setContentLength(bStream.size());
-
-	        bStream.writeTo(response.getOutputStream());
-
-	        response.getOutputStream().flush();
-	        response.getOutputStream().close();
-
-	    } finally {
-	    	bStream.close();
-	    	in.close();
-	    	fis.close();
-	        //EgovResourceCloseHelper.close(bStream, in, fis);
-	    	
-	    }
-	    
-	    /* 이미지 리사이즈 graphics start 
+		/* 이미지 리사이즈 graphics start */
 		try {
 			
 			// 파일에서 이미지 불러오기
@@ -124,7 +50,7 @@ public class getImageForContents extends HttpServlet {
 			System.out.println("image height:"+oldHeight);
 			
 			// 이미지 너비가 1300을 넘을경우 리사이징
-			if(oldWidth > 1300) {
+		//	if(oldWidth > 1300) {
 				
 				//확장자
 				String format = fileNm.substring(fileNm.lastIndexOf(".") + 1);
@@ -162,14 +88,15 @@ public class getImageForContents extends HttpServlet {
 				//연결 끊기
 				g.dispose();
 				//그려진 이미지를 파일로 만들기
-				ImageIO.write(newImage, format, new File(uploadPath + fileNm));
-			}
+				ImageIO.write(newImage, format, new File(fileStr + fileNm));
+		//	}
 		
-			ro2(90, uploadPath, fileNm);
+			
+		//	ro2(90);
 			
 		}catch (Exception e){
 			e.printStackTrace();
-		}*/
+		}
 		/* 이미지 리사이즈 graphics end */
 	}
 
@@ -181,10 +108,10 @@ public class getImageForContents extends HttpServlet {
 		doGet(request, response);
 	}
 
-	private static void ro2(int rotate, String fileStr, String fileNm) throws Exception {
+	private static void ro2(int rotate) throws Exception {
 		
-	//	String fileStr = "C:\\editor_img\\";
-	//	String fileNm = "118840_KakaoTalk_20240311_131842112.jpg";
+		String fileStr = "C:\\editor_img\\";
+		String fileNm = "700013_KakaoTalk_20240311_131842112.jpg";
 		
 //	    byte[] imgbuf2 = getDecript("원본 이미지 경로", "");
 //	    ByteArrayInputStream bais2 = new ByteArrayInputStream(imgbuf2);
@@ -214,4 +141,5 @@ public class getImageForContents extends HttpServlet {
 	 
 	    ImageIO.write(newImage, "JPG", new File(fileStr + fileNm));
 	}
+
 }

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시물등록하기</title>
+<title>게시물수정하기</title>
 <meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes,initial-scale=1.0" />
 
 <link rel="stylesheet" href="css/main.css" />
@@ -22,7 +22,7 @@
 
 <script type="text/javascript">
 
-	function boardInsertChk(){
+	function boardUpdateChk(){
 		
 		if($("#title").val() == ''){
 			alert('게시물 제목을 입력해주세요.');
@@ -48,15 +48,16 @@
 <div id="main">
 
 	<div id="content_all">
-	<form name="" id="" method="post" action="/BoardInsert" onsubmit="return boardInsertChk();">
+	<form name="" id="" method="post" action="/BoardUpdate" onsubmit="return boardUpdateChk();">
+		<input type="hidden" name="seq" id="seq" value="<c:out value="${boardVO.seq}" />" />
 		
-		<p class="boardTitle">게시글 등록하기</p>
+		<p class="boardTitle">게시글 수정하기</p>
 		
 		<hr/>
 		
 		<div class="fields">
 			<label>제목</label>
-			<input type="text" name="title" id="title"></input>
+			<input type="text" name="title" id="title" value="<c:out value="${boardVO.title}" />"></input>
 		</div>
 	
 		<div class="fields">
@@ -64,10 +65,10 @@
 		</div>
 		
 		<div class="fields">
-			<textarea id="editor" name="content"></textarea>
+			<textarea id="editor" name="content"><c:out value="${boardVO.content}" /></textarea>
 		</div>
 		
-		<input type="submit" value="등록하기" class="button" />
+		<input type="submit" value="수정하기" class="button" />
 		<input type="button" value="취소하기" class="button" onclick="location.href='/BoardList'"/>
 		
 	</form>

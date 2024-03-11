@@ -109,4 +109,24 @@
     <servlet-name>getImageForContents</servlet-name>
     <url-pattern>/getImageForContents</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BoardUpdate</display-name>
+    <servlet-name>BoardUpdate</servlet-name>
+    <servlet-class>board.BoardUpdate</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BoardUpdate</servlet-name>
+    <url-pattern>/BoardUpdate</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ImageResizeTest</display-name>
+    <servlet-name>ImageResizeTest</servlet-name>
+    <servlet-class>board.ImageResizeTest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ImageResizeTest</servlet-name>
+    <url-pattern>/ImageResizeTest</url-pattern>
+  </servlet-mapping>
 </web-app>
