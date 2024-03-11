@@ -130,8 +130,10 @@ public class ckeditor5Upload extends HttpServlet {
 		try {
 			makeThumbnail(uploadPath, fileName, "jpg");
 		}catch(Exception e) {
-			
+			System.out.println(e);
 		}
+		
+		imageResize(uploadPath, fileName);
 	}
 
 	private String getFilename(Part part) {
@@ -170,6 +172,7 @@ public class ckeditor5Upload extends HttpServlet {
 			metadata = ImageMetadataReader.readMetadata(imageFile);
 			directory = metadata.getFirstDirectoryOfType(ExifIFD0Directory.class);
 			jpegDirectory = metadata.getFirstDirectoryOfType(JpegDirectory.class);
+			System.out.println("directory:"+directory);
 			if(directory != null){
 				orientation = directory.getInt(ExifIFD0Directory.TAG_ORIENTATION); // 회전정보
 				width = jpegDirectory.getImageWidth(); // 가로
@@ -178,6 +181,7 @@ public class ckeditor5Upload extends HttpServlet {
 			
 			// 3. 변경할 값들을 설정한다.
 		    AffineTransform atf = new AffineTransform();
+		    System.out.println("orientation:"+orientation);
 		    switch (orientation) {
 		    case 1:
 		        break;
@@ -235,7 +239,7 @@ public class ckeditor5Upload extends HttpServlet {
 		    iwp.setCompressionQuality(1.0f);
 
 		    // 4. 회전하여 생성할 파일을 만든다.
-		    File outFile = new File(filePath+"o6_rotated.jpg");
+		    File outFile = new File(filePath+fileName);
 		    FileImageOutputStream fios = new FileImageOutputStream(outFile);
 		    
 		    // 5. 원본파일을 회전하여 파일을 저장한다.
