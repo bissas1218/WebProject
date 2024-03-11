@@ -192,6 +192,10 @@ header #wrap .login ul li {
 	padding:0;
 	width:90%;
 }
+
+#content_all .viewContent .image img {
+	width:100%;
+}
 /* 게시글보기 end */
 
 #content_all hr {
