@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<style type="text/css">
+	#wrapper_popup div[id ^= 'layerPop'] {width:100%;margin:10px;max-width:500px;position:absolute; padding:20px 30px; background:#fff; z-index:100000;border-radius:5px;overflow:auto;display:none}
+	#wrapper_popup div[id ^= 'layerPop'] h2 {display:block;margin:10px 0 0;padding-bottom:15px;border-bottom:1px #d8d8d8 solid;font-size:1.1em;font-weight:bold}
+	#wrapper_popup div[id ^= 'layerPop'] p {display:block;padding:20px 0 0;margin:0;font-size:1.0em;line-height:1.5em}
+	#wrapper_popup div[id ^= 'layerPop'] .hour-close {display:inline-block;padding:8px 20px;background:#f2f2f2;color:#666;border:1px #d8d8d8 solid;border-radius:5px;margin-top:15px}
+	#wrapper_popup div[id ^= 'layerPop'] .hour-close:hover {background:#54A94C;color:#f8f8f8}
+	#wrapper_popup div[id ^= 'layerPop'] img.cancel {position:absolute; right:10px;top:10px;zoom:1;filter: alpha(opacity=50);opacity: 0.7}
+	#wrapper_popup div[id ^= 'layerPop'] img.cancel:hover {zoom:1;filter: alpha(opacity=100);opacity: 1.0}
+	#wrapper_popup .b-area {width:100%;text-align:right;margin-top:20px;border-top:1px #ccc solid}
+	#wrapper_popup ul {list-style-type:disc;margin:0 0 20px;line-height:1.5em}
+	#wrapper_popup .c-green {color:green !important}
+	#wrapper_popup .c-blue {color:blue !important}
+	#wrapper_popup .c-red {color:red !important}
+	.layer-shadow {box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.74);-webkit-box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.74);-moz-box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.74);}
+</style>
+
+<script>
+//팝업 닫기
+function closeLayer(IdName){
+	console.log('closeLayer : '+IdName);
+	$("#"+IdName).css("display","none");
+}
+//팝업열기
+function openLayer(IdName){
+	console.log('openLayer : ' + IdName);
+	$("#"+IdName).css("display","block");
+}
+</script>
+</head>
+<body>
+<div id="wrapper_popup">
+	<div id="layerPop1" class="layer-shadow">
+			<h2>팝업창 예제</h2>
+			<p>
+				첫번째 팝업입니다.<br><br>
+			</p>
+			<ul>
+				<li><a href="#">홈페이지 바로가기(클릭)</a></li>
+				<li><a href="#">공지사항보기</a></li>
+			</ul>
+		<div class="b-area"><a href="#" onclick="closeNoOpen('layerPop1')" class="hour-close">오늘 하루 열지 않기</a></div>
+		<a href="#" onclick="closeLayer('layerPop1')"><img class="cancel" src="./cancel.png" alt="X"></a>
+	</div>
+</div>
+
+<input type="button" onclick="openLayer('layerPop1');" value="팝업열기" />
+</body>
+</html>
