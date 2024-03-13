@@ -129,4 +129,34 @@
     <servlet-name>ImageResizeTest</servlet-name>
     <url-pattern>/ImageResizeTest</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserReserv</display-name>
+    <servlet-name>UserReserv</servlet-name>
+    <servlet-class>reserv.UserReserv</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserReserv</servlet-name>
+    <url-pattern>/UserReserv</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RservMng</display-name>
+    <servlet-name>RservMng</servlet-name>
+    <servlet-class>reserv.RservMng</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RservMng</servlet-name>
+    <url-pattern>/RservMng</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ReservMng</display-name>
+    <servlet-name>ReservMng</servlet-name>
+    <servlet-class>reserv.ReservMng</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReservMng</servlet-name>
+    <url-pattern>/ReservMng</url-pattern>
+  </servlet-mapping>
 </web-app>

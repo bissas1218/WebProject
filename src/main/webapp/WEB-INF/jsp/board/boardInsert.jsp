@@ -50,13 +50,13 @@
 	<div id="content_all">
 	<form name="" id="" method="post" action="/BoardInsert" onsubmit="return boardInsertChk();">
 		
-		<p class="boardTitle">게시글 등록하기</p>
+		<p class="contentTitle">게시글 등록하기</p>
 		
 		<hr/>
 		
 		<div class="fields">
 			<label>제목</label>
-			<input type="text" name="title" id="title"></input>
+			<input type="text" name="title" id="title" class="text_85"></input>
 		</div>
 	
 		<div class="fields">

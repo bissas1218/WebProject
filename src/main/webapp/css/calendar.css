@@ -94,6 +94,7 @@
 }
 
 .current.today {background: rgb(242 242 242);}
+.current.selday {background: #c6ffff;}
 
 .sec_cal .cal_wrap .dates {
     display: flex;

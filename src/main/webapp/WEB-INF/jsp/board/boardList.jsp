@@ -23,11 +23,11 @@
 
 	<div id="content_all">
 		
-		<p class="boardTitle">게시글 목록</p>
+		<p class="contentTitle">게시글 목록</p>
 		
 		<hr/>
 		
-		<div id="boardList">
+		<div id="tableList">
 			<table>
 				<thead>
 					<tr>
@@ -47,7 +47,7 @@
 								<c:out value="${boardList.title}" />
 							</a>
 						</td>
-						<td align="center"><c:out value="${boardList.regId}" /></td>
+						<td align="center"><c:out value="${tableList.regId}" /></td>
 						<td align="center"><c:out value="${boardList.regDate}" /></td>
 					</tr>
 				</c:forEach>

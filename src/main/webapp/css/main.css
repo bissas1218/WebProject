@@ -180,14 +180,26 @@ header #wrap .login ul .menu_icon {
 	font-weight:bold;
 }
 
-/* 게시글보기 start */
-#content_all .boardTitle {
+#content_all .contentTitle {
 	font-size:1.3em;
 	font-weight:bold;
 	padding:20px;
 	color:#616161;
 }
-	
+
+#content_all .contentSubTitle {
+	font-size:1.1em;
+	font-weight:bold;
+	padding:20px;
+	color:#616161;
+}
+
+#content_all .contentSubTitle font {
+	font-size:0.9em;
+	color:red;
+}
+
+/* 게시글보기 start */
 #content_all .viewTitle {
 	width:90%;
 	padding:20px 0 0 0;
@@ -231,16 +243,43 @@ header #wrap .login ul .menu_icon {
 		color:#616161;
 	}
 	
-	#content_all input[type="text"] {
+	input.text_85 {
 	    border-radius: 4px;
 	    border: none;
 	    border: solid 1px;
-	    color:#c0c0c0;
+	    color:#969696;
 	    outline: 0;
 	    padding: 0 0.825rem;
 	    text-decoration: none;
+	    font-size:1.0em;
 	    width:85%;
-        height: 2.75rem;
+        height: 2.4rem;
+	}
+	
+	input.text_70 {
+	    border-radius: 4px;
+	    border: none;
+	    border: solid 1px;
+	    color:#969696;
+	    outline: 0;
+	    padding: 0 0.825rem;
+	    text-decoration: none;
+	    font-size:1.0em;
+	    width:70%;
+        height: 2.4rem;
+	}
+	
+	input.text_50 {
+	    border-radius: 4px;
+	    border: none;
+	    border: solid 1px;
+	    color:#969696;
+	    outline: 0;
+	    padding: 0 0.825rem;
+	    text-decoration: none;
+	    font-size:1.0em;
+	    width:50%;
+        height: 2.4rem;
 	}
 	
 	#content_all input[type="text"]:focus {
@@ -265,26 +304,50 @@ header #wrap .login ul .menu_icon {
 		font-weight:bold;
 	}
 	
+	input.button_middle {
+		margin:10px 0 10px 10px;
+		border-radius: 10px;
+		background-color:#c0c0c0;
+		color:#ffffff;
+		border:none;
+		min-height:40px;
+		min-width:100px;
+		font-size:1.0em;
+		font-weight:bold;
+	}
+	
+	input.button_small {
+		margin:3px 0 3px 0px;
+		border-radius: 10px;
+		background-color:#c0c0c0;
+		color:#ffffff;
+		border:none;
+		min-height:30px;
+		min-width:60px;
+		font-size:1.0em;
+		font-weight:bold;
+	}
+	
 	#content_all .button:hover {
 		background-color:#969696;
 		transition: 0.7s;
 	}
 	
-	#boardList table {
+	#tableList table {
 		margin:10px auto;
 		width:90%;
 		border-collapse: collapse;
     	border-spacing: 0;
 	}
 	
-	#boardList table thead {
+	#tableList table thead {
 		height:50px;
 		border-bottom-color: rgba(0, 0, 0, 0.2);
 		border-bottom: solid 2px #616161;
 		color:#616161;
 	}
 	
-	#boardList table tbody tr {
+	#tableList table tbody tr {
 		height:50px;
 		border-color: rgba(0, 0, 0, 0.2);
 		border: solid 1px #616161;
@@ -293,27 +356,27 @@ header #wrap .login ul .menu_icon {
     	color:#616161;
 	}
 	
-	#boardList .paging_normal {
+	#tableList .paging_normal {
 		height:60px;
 		width:100%;
 		text-align:center;
 		font-size:1.2em;
 	}
 	
-	#boardList .paging_mini {
+	#tableList .paging_mini {
 		height:60px;
 		width:100%;
 		text-align:center;
 		font-size:1.2em;
 	}
 	
-	#boardList a {
+	#tableList a {
 		padding:7px;
 		text-decoration-line: none;
 		color:#54545c;
 	}
 	
-	#boardList .paging_normal .active {
+	#tableList .paging_normal .active {
 		text-align:center;
 		font-weight:bold;
 		background-color:#c0c0c0;

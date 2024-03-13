@@ -77,11 +77,11 @@
 		margin:10px auto;
 	}
 	
-	#boardList .paging_normal {
+	#tableList .paging_normal {
 		display:block;
 	}
 	
-	#boardList .paging_mini {
+	#tableList .paging_mini {
 		display:none;
 	}
 	
@@ -160,11 +160,11 @@
 	
 	
 
-	#boardList .paging_normal {
+	#tableList .paging_normal {
 		display:block;
 	}
 	
-	#boardList .paging_mini {
+	#tableList .paging_mini {
 		display:none;
 	}
 	
@@ -249,11 +249,11 @@
 		float:left;
 	}
 	
-	#boardList .paging_normal {
+	#tableList .paging_normal {
 		display:block;
 	}
 	
-	#boardList .paging_mini {
+	#tableList .paging_mini {
 		display:none;
 	}
 	
@@ -354,11 +354,11 @@
 		float:left;
 	}
 	
-	#boardList .paging_normal {
+	#tableList .paging_normal {
 		display:block;
 	}
 	
-	#boardList .paging_mini {
+	#tableList .paging_mini {
 		display:none;
 	}
 	
@@ -469,11 +469,11 @@
         text-overflow: ellipsis;
 	}
 	
-	#boardList .paging_normal {
+	#tableList .paging_normal {
 		display:none;
 	}
 	
-	#boardList .paging_mini {
+	#tableList .paging_mini {
 		display:block;
 	}
 	
@@ -617,11 +617,11 @@
 		max-height:100%;
 	}
 	
-	#boardList .paging_normal {
+	#tableList .paging_normal {
 		display:none;
 	}
 	
-	#boardList .paging_mini {
+	#tableList .paging_mini {
 		display:block;
 	}
 	
@@ -767,11 +767,11 @@
 		max-height:100%;
 	}
 	
-	#boardList .paging_normal {
+	#tableList .paging_normal {
 		display:none;
 	}
 	
-	#boardList .paging_mini {
+	#tableList .paging_mini {
 		display:block;
 	}
 	
