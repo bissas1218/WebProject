@@ -59,6 +59,8 @@ function calendarInit() {
 			thisMonthParam = '0' + thisMonthParam;
 		}
 		
+		var list = null;
+		
 		// 선택한 월의 예약목록 조회
 		$.ajax({
 	        url:"/ReservList", // HelloServlet.java로 접근
@@ -66,105 +68,114 @@ function calendarInit() {
 	        data:{curDate: thisMonth.getFullYear() + '-' + thisMonthParam},
 	        success:function(data){
 	        	console.log(data.list); // [object Object]
+	        	list = data.list;
 	        },
 	        error:function(){
 	            alert("error");
+	        },
+	        complete : function()
+	        {
+	        	// 렌더링을 위한 데이터 정리
+	    	    currentYear = thisMonth.getFullYear();
+	    	    currentMonth = thisMonth.getMonth();
+	    	    currentDate = thisMonth.getDate();
+	    	
+	    	    // 이전 달의 마지막 날 날짜와 요일 구하기
+	    	    var startDay = new Date(currentYear, currentMonth, 0);
+	    	    var prevDate = startDay.getDate();
+	    	    var prevDay = startDay.getDay();
+	    	
+	    	    // 이번 달의 마지막날 날짜와 요일 구하기
+	    	    var endDay = new Date(currentYear, currentMonth + 1, 0);
+	    	    var nextDate = endDay.getDate();
+	    	    var nextDay = endDay.getDay();
+	    	
+	    	    // console.log(prevDate, prevDay, nextDate, nextDay);
+	    	
+	    	    // 현재 월 표기
+	    	    $('.year-month').text(currentYear + '.' + (currentMonth + 1));
+	    	
+	    	    // 렌더링 html 요소 생성
+	    	    calendar = document.querySelector('.dates')
+	    	    calendar.innerHTML = '';
+	    	    
+	    	    // 지난달
+	    	    for (var i = prevDate - prevDay + 1; i <= prevDate; i++) {
+	    	        calendar.innerHTML = calendar.innerHTML + '<div class="day prev disable">' + i + '</div>'
+	    	    }
+	    	    // 이번달
+	    	    for (var i = 1; i <= nextDate; i++) {
+	    	    	var no = '';
+	    	    	var yes = '';
+	    	    	if(list[i-1] != null){
+	    	    		no = list[i-1].no;
+	    	    		yes = list[i-1].yes;
+	    	    	}
+	    	        calendar.innerHTML = calendar.innerHTML + '<div class="day current">' + i + ' ' +
+	    	        	'<div style="margin:2px;"><div style="font-size:12px;color:pink;">'+no+' '+'</div><div style="font-size:12px;color:green;">'+yes+'</div></div>'
+	    	        	'</div>';
+	    	    }
+	    	    // 다음달
+	    	    for (var i = 1; i <= (7 - nextDay == 7 ? 0 : 7 - nextDay); i++) {
+	    	        calendar.innerHTML = calendar.innerHTML + '<div class="day next disable">' + i + '</div>'
+	    	    }
+	    	
+	    	    // 오늘 날짜 표기
+	    	    if (today.getMonth() == currentMonth) {
+	    	        todayDate = today.getDate();
+	    	        var currentMonthDate = document.querySelectorAll('.dates .current');
+	    	        currentMonthDate[todayDate -1].classList.add('today');
+	    	    }
+	    	    
+	    	    // 날짜선택 이벤트
+	    	    $('.day').on('click', function() {
+	    			
+	    			if($(this).attr("class").indexOf('prev') > 0 ){
+	    				thisMonth = new Date(currentYear, currentMonth - 1, 1);
+	    			    renderCalender(thisMonth);
+	    			}else if($(this).attr("class").indexOf('next') > 0 ){
+	    				thisMonth = new Date(currentYear, currentMonth + 1, 1);
+	    			    renderCalender(thisMonth); 
+	    			}else{
+	    				//console.log($(this).attr("class") + ' ' + currentYear+' '+(currentMonth+1)+' '+$(this).text());
+	    				// 선택한날짜 색상변경
+	    				$(".day").removeClass("selday");
+	    				$(this).addClass("selday");
+	    				var month_txt = '';
+	    				var day_txt = '';
+	    				if(String(currentMonth+1).length === 1){
+	    					month_txt = '0' + (currentMonth+1);
+	    				}else{
+	    					month_txt = (currentMonth+1);
+	    				}
+	    				
+	    				console.log($(this).text());
+	    				var arr = $(this).text().split(' ');
+	    				if(arr[0].length === 1){
+	    					day_txt = '0' + arr[0];
+	    				}else{
+	    					day_txt = arr[0];
+	    				}
+	    				
+	    				$(".contentSubTitle font").text('[선택한날짜 : ' + currentYear+'-'+month_txt+'-'+day_txt + '], 예약수:'+arr[1]+', 예약가능수:'+arr[2]);
+	    			}
+	    		});
+	    	    
+	    	    // 선택한날짜 초기화
+	    	    $(".contentSubTitle font").text('[선택한날짜 : 없음]');
+	    	    
+	    	    /* 현재월일 경우만 다음달이동 버튼 숨기기
+	    	    const nowDate = new Date(today.getFullYear()+'-'+(today.getMonth()+1));
+	    		const curDate = new Date(currentYear+'-'+ (currentMonth+1));
+	    		
+	    	    if(!(curDate < nowDate)){
+	    	    	$(".go-next").hide();	
+	    	    }else{
+	    	    	$(".go-next").show();
+	    	    }*/
 	        }
 	        
 	    });
-		
-	    // 렌더링을 위한 데이터 정리
-	    currentYear = thisMonth.getFullYear();
-	    currentMonth = thisMonth.getMonth();
-	    currentDate = thisMonth.getDate();
-	
-	    // 이전 달의 마지막 날 날짜와 요일 구하기
-	    var startDay = new Date(currentYear, currentMonth, 0);
-	    var prevDate = startDay.getDate();
-	    var prevDay = startDay.getDay();
-	
-	    // 이번 달의 마지막날 날짜와 요일 구하기
-	    var endDay = new Date(currentYear, currentMonth + 1, 0);
-	    var nextDate = endDay.getDate();
-	    var nextDay = endDay.getDay();
-	
-	    // console.log(prevDate, prevDay, nextDate, nextDay);
-	
-	    // 현재 월 표기
-	    $('.year-month').text(currentYear + '.' + (currentMonth + 1));
-	
-	    // 렌더링 html 요소 생성
-	    calendar = document.querySelector('.dates')
-	    calendar.innerHTML = '';
-	    
-	    // 지난달
-	    for (var i = prevDate - prevDay + 1; i <= prevDate; i++) {
-	        calendar.innerHTML = calendar.innerHTML + '<div class="day prev disable">' + i + '</div>'
-	    }
-	    // 이번달
-	    for (var i = 1; i <= nextDate; i++) {
-	        calendar.innerHTML = calendar.innerHTML + '<div class="day current">' + i + ' ' +
-	        	'<div style="margin:2px;"><div style="font-size:12px;color:pink;">333'+' '+'</div><div style="font-size:12px;color:green;">999</div></div>'
-	        	'</div>';
-	    }
-	    // 다음달
-	    for (var i = 1; i <= (7 - nextDay == 7 ? 0 : 7 - nextDay); i++) {
-	        calendar.innerHTML = calendar.innerHTML + '<div class="day next disable">' + i + '</div>'
-	    }
-	
-	    // 오늘 날짜 표기
-	    if (today.getMonth() == currentMonth) {
-	        todayDate = today.getDate();
-	        var currentMonthDate = document.querySelectorAll('.dates .current');
-	        currentMonthDate[todayDate -1].classList.add('today');
-	    }
-	    
-	    // 날짜선택 이벤트
-	    $('.day').on('click', function() {
-			
-			if($(this).attr("class").indexOf('prev') > 0 ){
-				thisMonth = new Date(currentYear, currentMonth - 1, 1);
-			    renderCalender(thisMonth);
-			}else if($(this).attr("class").indexOf('next') > 0 ){
-				thisMonth = new Date(currentYear, currentMonth + 1, 1);
-			    renderCalender(thisMonth); 
-			}else{
-				//console.log($(this).attr("class") + ' ' + currentYear+' '+(currentMonth+1)+' '+$(this).text());
-				// 선택한날짜 색상변경
-				$(".day").removeClass("selday");
-				$(this).addClass("selday");
-				var month_txt = '';
-				var day_txt = '';
-				if(String(currentMonth+1).length === 1){
-					month_txt = '0' + (currentMonth+1);
-				}else{
-					month_txt = (currentMonth+1);
-				}
-				
-				console.log($(this).text());
-				var arr = $(this).text().split(' ');
-				if(arr[0].length === 1){
-					day_txt = '0' + arr[0];
-				}else{
-					day_txt = arr[0];
-				}
-				
-				$(".contentSubTitle font").text('[선택한날짜 : ' + currentYear+'-'+month_txt+'-'+day_txt + '], 예약수:'+arr[1]+', 예약가능수:'+arr[2]);
-			}
-		});
-	    
-	    // 선택한날짜 초기화
-	    $(".contentSubTitle font").text('[선택한날짜 : 없음]');
-	    
-	    /* 현재월일 경우만 다음달이동 버튼 숨기기
-	    const nowDate = new Date(today.getFullYear()+'-'+(today.getMonth()+1));
-		const curDate = new Date(currentYear+'-'+ (currentMonth+1));
-		
-	    if(!(curDate < nowDate)){
-	    	$(".go-next").hide();	
-	    }else{
-	    	$(".go-next").show();
-	    }*/
 	    
 	}
 	

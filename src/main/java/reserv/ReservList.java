@@ -47,10 +47,15 @@ public class ReservList extends HttpServlet {
 		ResultSet rs = null;
 		
 		try {
-			String sql = "select a.reserv_date, count(*) total\r\n"
-					+ ", (select count(*) from reserv where reserv_date = a.reserv_date and (name = '' or name is null)) no\r\n"
-					+ ", (select count(*) from reserv where reserv_date = a.reserv_date and (name != '' and name is not null)) yes\r\n"
-					+ "from reserv a where a.reserv_date like '"+request.getParameter("curDate")+"%' group by a.reserv_date";
+			String sql = "with recursive T as (\r\n"
+					+ "    select last_day(str_to_date('"+request.getParameter("curDate")+"-01', '%Y-%m-%d') - interval 1 month) + interval 1 day as startDate\r\n"
+					+ "    union all\r\n"
+					+ "    select startDate + interval 1 day from T where startDate < last_day(str_to_date('"+request.getParameter("curDate")+"-01', '%Y-%m-%d'))\r\n"
+					+ ")\r\n"
+					+ "select startDate reserv_date\r\n"
+					+ " , (select count(*) from reserv where reserv_date = startDate and (name = '' or name is null)) no\r\n"
+					+ " , (select count(*) from reserv where reserv_date = startDate and (name != '' and name is not null)) yes\r\n"
+					+ "from T order by startDate asc";
 
 			pstmt = con.prepareStatement(sql);
 		//	pstmt.setString(1, request.getParameter("curDate"));
@@ -67,9 +72,8 @@ public class ReservList extends HttpServlet {
 				
 				System.out.println(rs.getString(1));
 				map.put("reserv_date", rs.getString(1));
-				map.put("total", rs.getString(2));
-				map.put("no", rs.getString(3));
-				map.put("yes", rs.getString(4));
+				map.put("no", rs.getString(2));
+				map.put("yes", rs.getString(3));
 				list.add( map );
 			}
 			
