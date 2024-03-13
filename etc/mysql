@@ -13,6 +13,8 @@ CREATE TABLE `board` (
 drop table reserv;
 
 CREATE TABLE `reserv` (
-  `reserv_date` varchar(8) DEFAULT NULL,
-  `reserv_time` varchar(5) DEFAULT NULL
+  `reserv_date` varchar(10) DEFAULT NULL,
+  `reserv_time` varchar(5) DEFAULT NULL,
+  `name` varchar(10) DEFAULT NULL,
+  `tel` varchar(13) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;

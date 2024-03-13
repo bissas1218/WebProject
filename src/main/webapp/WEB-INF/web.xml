@@ -159,4 +159,14 @@
     <servlet-name>ReservMng</servlet-name>
     <url-pattern>/ReservMng</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ReservList</display-name>
+    <servlet-name>ReservList</servlet-name>
+    <servlet-class>reserv.ReservList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReservList</servlet-name>
+    <url-pattern>/ReservList</url-pattern>
+  </servlet-mapping>
 </web-app>

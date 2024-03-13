@@ -54,6 +54,25 @@ function calendarInit() {
 	
 	function renderCalender(thisMonth) {
 	
+		var thisMonthParam = String( thisMonth.getMonth()+1 );
+		if(thisMonthParam.length === 1){
+			thisMonthParam = '0' + thisMonthParam;
+		}
+		
+		// 선택한 월의 예약목록 조회
+		$.ajax({
+	        url:"/ReservList", // HelloServlet.java로 접근
+	        type: "get", // GET 방식
+	        data:{curDate: thisMonth.getFullYear() + '-' + thisMonthParam},
+	        success:function(data){
+	        	console.log(data.list); // [object Object]
+	        },
+	        error:function(){
+	            alert("error");
+	        }
+	        
+	    });
+		
 	    // 렌더링을 위한 데이터 정리
 	    currentYear = thisMonth.getFullYear();
 	    currentMonth = thisMonth.getMonth();
@@ -84,7 +103,9 @@ function calendarInit() {
 	    }
 	    // 이번달
 	    for (var i = 1; i <= nextDate; i++) {
-	        calendar.innerHTML = calendar.innerHTML + '<div class="day current">' + i + '</div>'
+	        calendar.innerHTML = calendar.innerHTML + '<div class="day current">' + i + ' ' +
+	        	'<div style="margin:2px;"><div style="font-size:12px;color:pink;">333'+' '+'</div><div style="font-size:12px;color:green;">999</div></div>'
+	        	'</div>';
 	    }
 	    // 다음달
 	    for (var i = 1; i <= (7 - nextDay == 7 ? 0 : 7 - nextDay); i++) {
@@ -112,7 +133,23 @@ function calendarInit() {
 				// 선택한날짜 색상변경
 				$(".day").removeClass("selday");
 				$(this).addClass("selday");
-				$(".contentSubTitle font").text('[선택한날짜 : ' + currentYear+'-'+(currentMonth+1)+'-'+$(this).text() + ']');
+				var month_txt = '';
+				var day_txt = '';
+				if(String(currentMonth+1).length === 1){
+					month_txt = '0' + (currentMonth+1);
+				}else{
+					month_txt = (currentMonth+1);
+				}
+				
+				console.log($(this).text());
+				var arr = $(this).text().split(' ');
+				if(arr[0].length === 1){
+					day_txt = '0' + arr[0];
+				}else{
+					day_txt = arr[0];
+				}
+				
+				$(".contentSubTitle font").text('[선택한날짜 : ' + currentYear+'-'+month_txt+'-'+day_txt + '], 예약수:'+arr[1]+', 예약가능수:'+arr[2]);
 			}
 		});
 	    
@@ -165,11 +202,10 @@ function addRservTime(){
 		
 		innerHtml += '<tr class="reservInfo_'+newNum+'">';
 		innerHtml += '	<td align="center"><input type="text" name="reservTime" id="reservTime" class="text_50"  maxlength="5" /></td>';
-		innerHtml += '	<td align="center"><input type="text" class="text_50" /></td>';
-		innerHtml += '	<td align="center"><input type="text" class="text_70" /></td>';
+		innerHtml += '	<td align="center"><input type="text" name="name" id="name" class="text_50" maxlength="10" class="text_50" /></td>';
+		innerHtml += '	<td align="center"><input type="text" name="tel" id="tel" class="text_50" maxlength="13" class="text_70" /></td>';
 		innerHtml += '	<td align="center">';
 		innerHtml += '	<input type="button" value="저장" onclick="reservSave(\''+newNum+'\');" class="button_small" />';
-		innerHtml += '	<input type="button" value="수정" onclick="" class="button_small" />';
 		innerHtml += '	<input type="button" value="삭제" onclick="reservDelete(\''+newNum+'\');" class="button_small" />';
 		innerHtml += '	</td>';
 		innerHtml += '</tr>';
@@ -191,14 +227,41 @@ function reservDelete(num){
 
 // 예약시간 저장
 function reservSave(num){
-	//console.log( $(".reservInfo input #reservTime").val() );
-	console.log( $(".reservInfo_"+num+" #reservTime").val() );
+	
+	if($(".contentSubTitle font").text().indexOf('없음') > 0){
+		alert('날짜를 선택하세요.');
+		return false;
+	}
+	
+	var findTxt = $(".contentSubTitle font").text().indexOf('-');
+	var findTxt2 = $(".contentSubTitle font").text().lastIndexOf('-');
+	console.log( $(".contentSubTitle font").text().substring(findTxt-4, findTxt2+3) );
+	
+	//console.log( $(".reservInfo_"+num+" #reservTime").val() );
 	var reserv_time = $(".reservInfo_"+num+" #reservTime").val();
+	var name = $(".reservInfo_"+num+" #name").val();
+	var tel = $(".reservInfo_"+num+" #tel").val();
 	
 	if(reserv_time == ''){
 		alert('예약시간을 입력하세요.');
 		$(".reservInfo_"+num+" #reservTime").focus();
+		return false;
 	}
+	
+	$.ajax({    
+		type : 'post',   
+		url : '/ReservMng',           // 요청할 서버url    
+	//	async : true,            // 비동기화 여부 (default : true)    
+	//	contentType:"application/json",
+		dataType : 'text',       // 데이터 타입 (html, xml, json, text 등등)    
+		data : {reserv_date:$(".contentSubTitle font").text().substring(findTxt-4, findTxt2+3), reserv_time:reserv_time, name:name, tel:tel},
+		success:function(data){
+            console.log(data); // [object Object]
+        },   
+		error : function(request, status, error) { // 결과 에러 콜백함수        
+			console.log('error!!!'+error)    
+			}
+	})
 }
 
 </script>
@@ -258,11 +321,10 @@ function reservSave(num){
 				
 					<tr class="reservInfo_<c:out value="${num}"/>">
 						<td align="center"><input type="text" name="reservTime" id="reservTime" class="text_50" maxlength="5" /></td>
-						<td align="center"><input type="text" class="text_50" /></td>
-						<td align="center"><input type="text" class="text_70" /></td>
+						<td align="center"><input type="text" name="name" id="name" class="text_50" maxlength="10" /></td>
+						<td align="center"><input type="text" name="tel" id="tel" class="text_70" maxlength="13" /></td>
 						<td align="center">
 							<input type="button" value="저장" onclick="reservSave('<c:out value="${num}"/>');" class="button_small" />
-							<input type="button" value="수정" onclick="" class="button_small" />
 							<input type="button" value="삭제" onclick="reservDelete('<c:out value="${num}"/>');" class="button_small" />
 						</td>
 					</tr>
