@@ -41,7 +41,7 @@ public class ReservMng extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getParameter("reserv_date"));
+		// System.out.println(request.getParameter("reserv_date"));
 		
 		DBConnection dbconn = new DBConnection();
 		Connection con = dbconn.dbConn();
