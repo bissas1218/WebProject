@@ -175,10 +175,12 @@ header #wrap .login ul .menu_icon {
 	font-size:1.2em;
 }
 
-#content_2 .content {
-	padding:10px;
+#content_2 p {
+	margin:2px 0 0 10px;
+	padding:0;
 	font-weight:bold;
 }
+
 
 #content_all .contentTitle {
 	font-size:1.3em;

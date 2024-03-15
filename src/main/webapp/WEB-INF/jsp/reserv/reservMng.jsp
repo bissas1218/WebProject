@@ -157,7 +157,7 @@ function renderCalender(thisMonth) {
     			}else{	// 현재달 선택
     				
     				//console.log($(this).attr("class") + ' ' + currentYear+' '+(currentMonth+1)+' '+$(this).text());
-    				// 선택한날짜 색상변경
+    				// 선택한날자 색상변경
     				$(".day").removeClass("selday");
     				$(this).addClass("selday");
     				
@@ -178,7 +178,7 @@ function renderCalender(thisMonth) {
     					day_txt = arr[0];
     				}
     				
-    				$(".contentSubTitle font").text('[선택한날짜 : ' + currentYear+'-'+month_txt+'-'+day_txt + ']');
+    				$(".contentSubTitle font").text('[선택한날자 : ' + currentYear+'-'+month_txt+'-'+day_txt + ']');
     				$(".reservCntChk .no").text('예약수 : '+arr[1]);
     				if(arr[2] != ''){
     					$(".reservCntChk .yes").text(' 예약가능수 : '+arr[2]);    					
@@ -224,8 +224,8 @@ function renderCalender(thisMonth) {
     			}
     		});
     	    
-    	    // 선택한날짜 초기화
-    	    $(".contentSubTitle font").text('[선택한날짜 : 없음]');
+    	    // 선택한날자 초기화
+    	    $(".contentSubTitle font").text('[선택한날자 : 없음]');
     	    $(".reservCntChk .no").text('');
     	    $(".reservCntChk .yes").text('');
     	    

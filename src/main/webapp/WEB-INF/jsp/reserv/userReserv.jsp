@@ -165,7 +165,7 @@ function renderCalender(thisMonth) {
                 currentMonthDate[todayDate -1].classList.add('today');
             }
         	
-         // 날짜선택 이벤트
+         	// 날짜선택 이벤트
     	    $('.day').on('click', function() {
     			
     			if($(this).attr("class").indexOf('prev') > 0 ){					// 이전달이동
@@ -209,7 +209,7 @@ function renderCalender(thisMonth) {
     	    	    var afterDate2 = new Date(date22).toISOString();
     	    	    
     	    	    if(beforeDate2 <= afterDate2){
-    	    	    	// 선택한날짜 색상변경
+    	    	    	// 선택한날자 색상변경
         				$(".day").removeClass("selday");
         				$(this).addClass("selday");
         				
@@ -229,7 +229,7 @@ function renderCalender(thisMonth) {
         					day_txt = arr[0];
         				}
         				
-        				$(".contentSubTitle font").text('[선택한날짜 : ' + currentYear+'-'+month_txt+'-'+day_txt + ']');
+        				$(".contentSubTitle font").text('[선택한날자 : ' + currentYear+'-'+month_txt+'-'+day_txt + ']');
         				$(".reservCntChk .no").text('예약수 : '+arr[1]);
         				if(arr[2] != ''){
         					$(".reservCntChk .yes").text(' 예약가능수 : '+arr[2]);    					
@@ -279,8 +279,8 @@ function renderCalender(thisMonth) {
     			}
     		});
          
-    	 	// 선택한날짜 초기화
-    	    $(".contentSubTitle font").text('[선택한날짜 : 없음]');
+    	 	// 선택한날자 초기화
+    	    $(".contentSubTitle font").text('[선택한날자 : 없음]');
     	 
     	 	// 예약목록 지우기
     	    $('#reservTable > tbody').empty();
