@@ -178,10 +178,15 @@ function renderCalender(thisMonth) {
     					day_txt = arr[0];
     				}
     				
-    				$(".contentSubTitle font").text('[선택한날짜 : ' + currentYear+'-'+month_txt+'-'+day_txt + '], 예약수:'+arr[1]+', 예약가능수:'+arr[2]);
+    				$(".contentSubTitle font").text('[선택한날짜 : ' + currentYear+'-'+month_txt+'-'+day_txt + ']');
+    				$(".reservCntChk .no").text('예약수 : '+arr[1]);
+    				if(arr[2] != ''){
+    					$(".reservCntChk .yes").text(' 예약가능수 : '+arr[2]);    					
+    				}else{
+    					$(".reservCntChk .yes").text('');
+    				}
     				
     				// 예약목록 조회하기
-    				console.log(currentYear+'-'+month_txt+'-'+day_txt);
     				$.ajax({
     			        url:"/ReservList", 
     			        type: "post",
@@ -221,6 +226,11 @@ function renderCalender(thisMonth) {
     	    
     	    // 선택한날짜 초기화
     	    $(".contentSubTitle font").text('[선택한날짜 : 없음]');
+    	    $(".reservCntChk .no").text('');
+    	    $(".reservCntChk .yes").text('');
+    	    
+    	    // 예약목록 지우기
+    	    $('#reservMngTable > tbody').empty();
     	    
     	    /* 현재월일 경우만 다음달이동 버튼 숨기기
     	    const nowDate = new Date(today.getFullYear()+'-'+(today.getMonth()+1));
@@ -301,7 +311,7 @@ function reservSave(num){
 	
 	var findTxt = $(".contentSubTitle font").text().indexOf('-');
 	var findTxt2 = $(".contentSubTitle font").text().lastIndexOf('-');
-	console.log( $(".contentSubTitle font").text().substring(findTxt-4, findTxt2+3) );
+	//console.log( $(".contentSubTitle font").text().substring(findTxt-4, findTxt2+3) );
 	
 	//console.log( $(".reservInfo_"+num+" #reservTime").val() );
 	var reserv_time = $(".reservInfo_"+num+" #reservTime").val();
@@ -314,6 +324,18 @@ function reservSave(num){
 		return false;
 	}
 	
+	if(name == ''){
+		alert('예약자 성명을 입력하세요.');
+		$(".reservInfo_"+num+" #name").focus();
+		return false;
+	}
+	
+	if(name == ''){
+		alert('예약자 연락처를 입력하세요.');
+		$(".reservInfo_"+num+" #tel").focus();
+		return false;
+	}
+	
 	$.ajax({    
 		type : 'post',   
 		url : '/ReservMng',           // 요청할 서버url    
@@ -322,10 +344,9 @@ function reservSave(num){
 		dataType : 'text',       // 데이터 타입 (html, xml, json, text 등등)    
 		data : {reserv_date:$(".contentSubTitle font").text().substring(findTxt-4, findTxt2+3), reserv_time:reserv_time, name:name, tel:tel},
 		success:function(data){
-            console.log(data); // [object Object]
+           // console.log(data); // [object Object]
          // 캘린더 렌더링
         	renderCalender(thisMonth);
-        	$('#reservMngTable > tbody').empty();
         },   
 		error : function(request, status, error) { // 결과 에러 콜백함수        
 			console.log('error!!!'+error)    
@@ -373,6 +394,7 @@ function reservSave(num){
 		<hr/>
 		
 		<p class="contentSubTitle">예약관리하기 <font>[없음]</font></p>
+		<p class="reservCntChk"><font class="no"></font><font class="yes"></font></p>
 		
 		<div id="tableList">
 		
@@ -386,21 +408,7 @@ function reservSave(num){
 					</tr>
 				</thead>
 				<tbody>
-				<!-- 
-				<c:forEach var="num" begin="1" end="5" step="1">
 				
-					<tr class="reservInfo_<c:out value="${num}"/>">
-						<td align="center"><input type="text" name="reservTime" id="reservTime" class="text_50" maxlength="5" /></td>
-						<td align="center"><input type="text" name="name" id="name" class="text_50" maxlength="10" /></td>
-						<td align="center"><input type="text" name="tel" id="tel" class="text_70" maxlength="13" /></td>
-						<td align="center">
-							<input type="button" value="저장" onclick="reservSave('<c:out value="${num}"/>');" class="button_small" />
-							<input type="button" value="삭제" onclick="reservDelete('<c:out value="${num}"/>');" class="button_small" />
-						</td>
-					</tr>
-					
-				</c:forEach>
-					 -->
 				</tbody>
 				<tfoot>
 					<tr>

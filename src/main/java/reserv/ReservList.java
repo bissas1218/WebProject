@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +40,15 @@ public class ReservList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//System.out.println("reserv list "+request.getParameter("curDate"));
+		//System.out.println("reserv list : "+request.getParameter("curDate"));
+		
+		String curDate = request.getParameter("curDate");
+		String curYear = curDate.substring(0,4);
+		String curMonth = curDate.substring(5,7);
+		Calendar cal = Calendar.getInstance(); 
+		cal.set(Integer.parseInt(curYear), Integer.parseInt(curMonth)-1, 1); 
+
+		int lastDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 		
 		DBConnection dbcon = new DBConnection();
 		Connection con = dbcon.dbConn();
@@ -47,39 +56,49 @@ public class ReservList extends HttpServlet {
 		ResultSet rs = null;
 		
 		try {
-			String sql = "with recursive T as (\r\n"
-					+ "    select last_day(str_to_date('"+request.getParameter("curDate")+"-01', '%Y-%m-%d') - interval 1 month) + interval 1 day as startDate\r\n"
-					+ "    union all\r\n"
-					+ "    select startDate + interval 1 day from T where startDate < last_day(str_to_date('"+request.getParameter("curDate")+"-01', '%Y-%m-%d'))\r\n"
-					+ ")\r\n"
-					+ "select startDate reserv_date\r\n"
-				//	+ " , (select count(*) from reserv where reserv_date = startDate and (name = '' or name is null)) no\r\n"
-					+ " , (select count(*) from reserv where reserv_date = startDate and (name != '' and name is not null)) yes\r\n"
-					+ " , (select count(*) from reserv where reserv_date = '9999-12-31') - (select count(*) from reserv where reserv_date = startDate and (name != '' and name is not null)) no\r\n"
-					+ "from T order by startDate asc";
-			System.out.println(sql);
-
-			pstmt = con.prepareStatement(sql);
-		//	pstmt.setString(1, request.getParameter("curDate"));
-			rs = pstmt.executeQuery();
-			//System.out.println(rs.next());
-			
-			
 			
 			List<Map<String, String>> list = new ArrayList<Map<String, String>>();
 	        
-			while (rs.next()) {
-				
-				Map<String, String> map = new HashMap<String, String>();
-				
-			//	System.out.println(rs.getString(1));
-				map.put("reserv_date", rs.getString(1));
-				map.put("no", rs.getString(2));
-				map.put("yes", rs.getString(3));
-				list.add( map );
+			int maxReservCnt = 0;
+			String sql2 = "select count(*) from reserv where reserv_date = '9999-12-31'";
+			pstmt = con.prepareStatement(sql2);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				maxReservCnt = rs.getInt(1);
 			}
 			
+			pstmt.close();
+			rs.close();
+			String sql3 = "select reserv_date from reserv where reserv_date between '"+curDate+"-01' and '"+curDate+"-"+lastDay+"'";
+			pstmt = con.prepareStatement(sql3);
+			rs = pstmt.executeQuery();
+			List<String> list2 = new ArrayList<String>();
 			
+			while(rs.next()) {
+				list2.add(rs.getString(1));
+			}
+			
+			for(int i=1; i<=lastDay; i++) {
+				
+				String day = Integer.toString(i);
+				if(day.length() == 1) {
+					day = "0" + day;
+				}
+
+				String curDate2 = curYear + "-" + curMonth + "-" + day;
+				
+				int chkDate = 0;
+				for(int j=0; j<list2.size(); j++) {
+					if(curDate2.equals(list2.get(j))){
+						chkDate++;
+					}
+				}
+				Map<String, String> map = new HashMap<String, String>();
+				map.put("reserv_date", curYear + "-" + curMonth + "-" + day);
+				map.put("no", Integer.toString(chkDate));
+				map.put("yes", Integer.toString(maxReservCnt-chkDate));
+				list.add( map );
+			}
 	        
 	        JSONObject jObj = new JSONObject();
 	        jObj.put("list", list);

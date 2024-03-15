@@ -188,15 +188,35 @@ header #wrap .login ul .menu_icon {
 }
 
 #content_all .contentSubTitle {
+	margin:0 0 0 10px;
+	padding:0;
 	font-size:1.1em;
 	font-weight:bold;
-	padding:20px;
 	color:#616161;
 }
 
 #content_all .contentSubTitle font {
 	font-size:0.9em;
 	color:red;
+}
+
+#content_all .reservCntChk {
+	margin:0 0 0 10px;
+	padding:0;
+}
+
+#content_all .reservCntChk .no {
+	margin:0;
+	padding:0;
+	font-size:1.0em;
+	color:pink;
+}
+
+#content_all .reservCntChk .yes {
+	margin:0;
+	padding:0;
+	font-size:1.0em;
+	color:green;
 }
 
 /* 게시글보기 start */
