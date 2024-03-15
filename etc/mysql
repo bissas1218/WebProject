@@ -8,3 +8,29 @@ CREATE TABLE `board` (
   `reg_date` datetime DEFAULT NULL,
   `reg_id` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+
+/*********** 예약 ********************/
+drop table reserv;
+
+CREATE TABLE `reserv` (
+  `reserv_date` varchar(10) DEFAULT NULL,
+  `reserv_time` varchar(5) DEFAULT NULL,
+  `name` varchar(10) DEFAULT NULL,
+  `tel` varchar(13) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+
+INSERT INTO bissas2.reserv
+(reserv_date, reserv_time, name, tel)
+VALUES('9999-12-31', '09:00', NULL, NULL);
+INSERT INTO bissas2.reserv
+(reserv_date, reserv_time, name, tel)
+VALUES('9999-12-31', '11:00', NULL, NULL);
+INSERT INTO bissas2.reserv
+(reserv_date, reserv_time, name, tel)
+VALUES('9999-12-31', '13:00', NULL, NULL);
+INSERT INTO bissas2.reserv
+(reserv_date, reserv_time, name, tel)
+VALUES('9999-12-31', '16:00', NULL, NULL);
+INSERT INTO bissas2.reserv
+(reserv_date, reserv_time, name, tel)
+VALUES('9999-12-31', '20:00', NULL, NULL);

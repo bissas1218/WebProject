@@ -28,6 +28,10 @@ header #wrap .logo {
 	height:40px;
 }
 
+header #wrap .logo img {
+	padding-top:5px;	
+}
+
 header #wrap .menu {
 	margin:0;
 	padding:0;
@@ -62,12 +66,25 @@ header #wrap .login ul {
 }
 
 header #wrap .login ul li {
-	padding:12px 5% 0 0;
-	margin:0;
 	float:right;
 	font-size:0.9em;
 }
 
+header #wrap .login ul li a {
+	text-decoration:none;
+}
+
+header #wrap .login ul .text {
+	padding:10px 7% 0 0;
+}
+
+header #wrap .login ul .search_icon {
+	padding:5px 5% 0 0;
+}
+
+header #wrap .login ul .menu_icon {
+	padding:5px 5% 0 0;
+}
 
 #main {
 	background-color:rgba(150,150,150, 0.8);
@@ -158,19 +175,53 @@ header #wrap .login ul li {
 	font-size:1.2em;
 }
 
-#content_2 .content {
-	padding:10px;
+#content_2 p {
+	margin:2px 0 0 10px;
+	padding:0;
 	font-weight:bold;
 }
 
-/* 게시글보기 start */
-#content_all .boardTitle {
+
+#content_all .contentTitle {
 	font-size:1.3em;
 	font-weight:bold;
 	padding:20px;
 	color:#616161;
 }
-	
+
+#content_all .contentSubTitle {
+	margin:0 0 0 10px;
+	padding:0;
+	font-size:1.1em;
+	font-weight:bold;
+	color:#616161;
+}
+
+#content_all .contentSubTitle font {
+	font-size:0.9em;
+	color:red;
+}
+
+#content_all .reservCntChk {
+	margin:0 0 0 10px;
+	padding:0;
+}
+
+#content_all .reservCntChk .no {
+	margin:0;
+	padding:0;
+	font-size:1.0em;
+	color:pink;
+}
+
+#content_all .reservCntChk .yes {
+	margin:0;
+	padding:0;
+	font-size:1.0em;
+	color:green;
+}
+
+/* 게시글보기 start */
 #content_all .viewTitle {
 	width:90%;
 	padding:20px 0 0 0;
@@ -214,16 +265,43 @@ header #wrap .login ul li {
 		color:#616161;
 	}
 	
-	#content_all input[type="text"] {
+	input.text_85 {
 	    border-radius: 4px;
 	    border: none;
 	    border: solid 1px;
-	    color:#c0c0c0;
+	    color:#969696;
 	    outline: 0;
 	    padding: 0 0.825rem;
 	    text-decoration: none;
+	    font-size:1.0em;
 	    width:85%;
-        height: 2.75rem;
+        height: 2.4rem;
+	}
+	
+	input.text_70 {
+	    border-radius: 4px;
+	    border: none;
+	    border: solid 1px;
+	    color:#969696;
+	    outline: 0;
+	    padding: 0 0.825rem;
+	    text-decoration: none;
+	    font-size:1.0em;
+	    width:70%;
+        height: 2.4rem;
+	}
+	
+	input.text_50 {
+	    border-radius: 4px;
+	    border: none;
+	    border: solid 1px;
+	    color:#969696;
+	    outline: 0;
+	    padding: 0 0.825rem;
+	    text-decoration: none;
+	    font-size:1.0em;
+	    width:50%;
+        height: 2.4rem;
 	}
 	
 	#content_all input[type="text"]:focus {
@@ -248,26 +326,50 @@ header #wrap .login ul li {
 		font-weight:bold;
 	}
 	
+	input.button_middle {
+		margin:10px 0 10px 10px;
+		border-radius: 10px;
+		background-color:#c0c0c0;
+		color:#ffffff;
+		border:none;
+		min-height:40px;
+		min-width:100px;
+		font-size:1.0em;
+		font-weight:bold;
+	}
+	
+	input.button_small {
+		margin:3px 0 3px 0px;
+		border-radius: 10px;
+		background-color:#c0c0c0;
+		color:#ffffff;
+		border:none;
+		min-height:30px;
+		min-width:60px;
+		font-size:1.0em;
+		font-weight:bold;
+	}
+	
 	#content_all .button:hover {
 		background-color:#969696;
 		transition: 0.7s;
 	}
 	
-	#boardList table {
+	#tableList table {
 		margin:10px auto;
 		width:90%;
 		border-collapse: collapse;
     	border-spacing: 0;
 	}
 	
-	#boardList table thead {
+	#tableList table thead {
 		height:50px;
 		border-bottom-color: rgba(0, 0, 0, 0.2);
 		border-bottom: solid 2px #616161;
 		color:#616161;
 	}
 	
-	#boardList table tbody tr {
+	#tableList table tbody tr {
 		height:50px;
 		border-color: rgba(0, 0, 0, 0.2);
 		border: solid 1px #616161;
@@ -276,27 +378,27 @@ header #wrap .login ul li {
     	color:#616161;
 	}
 	
-	#boardList .paging_normal {
+	#tableList .paging_normal {
 		height:60px;
 		width:100%;
 		text-align:center;
 		font-size:1.2em;
 	}
 	
-	#boardList .paging_mini {
+	#tableList .paging_mini {
 		height:60px;
 		width:100%;
 		text-align:center;
 		font-size:1.2em;
 	}
 	
-	#boardList a {
+	#tableList a {
 		padding:7px;
 		text-decoration-line: none;
 		color:#54545c;
 	}
 	
-	#boardList .paging_normal .active {
+	#tableList .paging_normal .active {
 		text-align:center;
 		font-weight:bold;
 		background-color:#c0c0c0;
@@ -354,5 +456,18 @@ header #wrap .login ul li {
 
 
 
-
+	/* layer팝업 */
+	#wrapper_popup div[id ^= 'layerPop'] {width:100%;margin:10px;max-width:200px; padding:20px 30px; background:#fff; z-index:100000;border-radius:5px;overflow:auto;display:none; float:right;}
+	#wrapper_popup div[id ^= 'layerPop'] h2 {display:block;margin:10px 0 0;padding-bottom:15px;border-bottom:1px #d8d8d8 solid;font-size:1.1em;font-weight:bold}
+	#wrapper_popup div[id ^= 'layerPop'] p {display:block;padding:20px 0 0;margin:0;font-size:1.0em;line-height:1.5em}
+	#wrapper_popup div[id ^= 'layerPop'] .hour-close {display:inline-block;padding:8px 20px;background:#f2f2f2;color:#666;border:1px #d8d8d8 solid;border-radius:5px;margin-top:15px}
+	#wrapper_popup div[id ^= 'layerPop'] .hour-close:hover {background:#54A94C;color:#f8f8f8}
+	#wrapper_popup div[id ^= 'layerPop'] img.cancel { right:10px;top:10px;zoom:1;filter: alpha(opacity=50);opacity: 0.7}
+	#wrapper_popup div[id ^= 'layerPop'] img.cancel:hover {zoom:1;filter: alpha(opacity=100);opacity: 1.0}
+	#wrapper_popup .b-area {width:100%;text-align:right;margin-top:20px;border-top:1px #ccc solid}
+	#wrapper_popup ul {list-style-type:disc;margin:0 0 20px;line-height:1.5em}
+	#wrapper_popup .c-green {color:green !important}
+	#wrapper_popup .c-blue {color:blue !important}
+	#wrapper_popup .c-red {color:red !important}
+	.layer-shadow {box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.74);-webkit-box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.74);-moz-box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.74);}
 

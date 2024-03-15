@@ -88,12 +88,13 @@
     width: calc(100% / 7);
     text-align: left;
     color: #999;
-    font-size: 14px;
+    font-size: 15px;
     text-align: center;
     border-radius:5px
 }
 
 .current.today {background: rgb(242 242 242);}
+.current.selday {background: #c6ffff;}
 
 .sec_cal .cal_wrap .dates {
     display: flex;

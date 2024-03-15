@@ -51,13 +51,13 @@
 	<form name="" id="" method="post" action="/BoardUpdate" onsubmit="return boardUpdateChk();">
 		<input type="hidden" name="seq" id="seq" value="<c:out value="${boardVO.seq}" />" />
 		
-		<p class="boardTitle">게시글 수정하기</p>
+		<p class="contentTitle">게시글 수정하기</p>
 		
 		<hr/>
 		
 		<div class="fields">
 			<label>제목</label>
-			<input type="text" name="title" id="title" value="<c:out value="${boardVO.title}" />"></input>
+			<input type="text" name="title" id="title" value="<c:out value="${boardVO.title}" />" class="text_85"></input>
 		</div>
 	
 		<div class="fields">

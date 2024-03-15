@@ -127,13 +127,26 @@ public class ckeditor5Upload extends HttpServlet {
 		//확장자
 		//imageResize(uploadPath, fileName);
 		//copyResizeImageRatioCriteria(300, "width", uploadPath, fileName, uploadPath, "new_"+fileName, "normal");
+		/*
 		try {
 			makeThumbnail(uploadPath, fileName, "jpg");
 		}catch(Exception e) {
 			System.out.println(e);
 		}
+		*/
+		
+		int orientation = getOrientation(uploadPath, fileName);
+		System.out.println("orientation:"+orientation);
 		
 		imageResize(uploadPath, fileName);
+		
+		if(orientation==6) {
+			try {
+				ro2(90, uploadPath, fileName);
+			}catch(Exception e) {
+				System.out.println(e);
+			}
+		}
 	}
 
 	private String getFilename(Part part) {
@@ -147,6 +160,37 @@ public class ckeditor5Upload extends HttpServlet {
         }
         return "";
     }
+	
+	private int getOrientation(String filePath, String fileName) {
+		
+		int orientation = 0;
+		
+		try {
+			
+			
+			// 1. 원본 파일을 읽는다.
+			File imageFile = new File(filePath+fileName);
+			Metadata metadata = ImageMetadataReader.readMetadata(imageFile);
+			
+			Directory directory = metadata.getFirstDirectoryOfType(ExifIFD0Directory.class);
+			JpegDirectory jpegDirectory = metadata.getFirstDirectoryOfType(JpegDirectory.class);
+			System.out.println("directory:"+directory);
+			if(directory != null){
+				orientation = directory.getInt(ExifIFD0Directory.TAG_ORIENTATION); // 회전정보
+			}
+			
+			
+		} catch (ImageProcessingException e) {
+			e.printStackTrace();
+		} catch (MetadataException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return orientation;
+		
+	}
 	
 	private void makeThumbnail(String filePath, String fileName, String fileExt) throws Exception {
 		// 1. 원본 파일을 읽는다.
