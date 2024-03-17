@@ -346,14 +346,23 @@
 	}
 	
 	#content_2 {
-		width:48%;
+		width:97%;
 		height:610px;
 		background-color:#ffffff; 
 		margin:10px 0 0 10px;
 		border-radius:5px;
 		float:left;
 	}
-	
+	/*
+	#content_2 {
+		width:96%;
+		height:610px;
+		background-color:#ffffff; 
+		margin:10px 0 0 10px;
+		border-radius:5px;
+		float:left;
+	}
+	*/
 	#tableList .paging_normal {
 		display:block;
 	}

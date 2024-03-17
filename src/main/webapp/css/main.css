@@ -162,6 +162,12 @@ header #wrap .login ul .menu_icon {
 	padding:5px 0 0 10px;
 }
 
+#content1 .stats {
+	padding:13% 0 0 0;
+	max-width:100%;
+	max-height:100%;
+}
+
 #myChart {
 	padding:10px;
 	max-width:100%;
@@ -200,6 +206,21 @@ header #wrap .login ul .menu_icon {
 #content_all .contentSubTitle font {
 	font-size:0.9em;
 	color:red;
+}
+
+#content_all .contentThirdTitle {
+	margin:30px 0 0 10px;
+	padding:0;
+	font-size:1.0em;
+	font-weight:bold;
+	color:#616161;
+}
+
+#content_all .stats {
+	padding:20px;
+	background-color:none;
+	max-width:90%;
+	margin:0 auto;
 }
 
 #content_all .reservCntChk {
@@ -453,8 +474,6 @@ header #wrap .login ul .menu_icon {
 		border-radius: 10px;
 		margin:0 auto;	
 	}
-
-
 
 	/* layer팝업 */
 	#wrapper_popup div[id ^= 'layerPop'] {width:100%;margin:10px;max-width:200px; padding:20px 30px; background:#fff; z-index:100000;border-radius:5px;overflow:auto;display:none; float:right;}

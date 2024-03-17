@@ -20,10 +20,12 @@ import java.util.List;
 import common.DBConnection;
 import common.PageNumberVO;
 import common.PageNumbering;
+import common.SaveAccessor;
 
 /**
  * Servlet implementation class BoardList
  */
+@WebServlet("/BoardList")
 public class BoardList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -40,6 +42,9 @@ public class BoardList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// 방문자 저장
+		new SaveAccessor(request, "BoardList");
+				
 		DBConnection dbconn = new DBConnection();
 		Connection con = dbconn.dbConn();
 		PreparedStatement pstmt = null;

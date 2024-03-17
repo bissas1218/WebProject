@@ -25,6 +25,7 @@ import common.Human;
 /**
  * Servlet implementation class ReservList
  */
+@WebServlet("/ReservList")
 public class ReservList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

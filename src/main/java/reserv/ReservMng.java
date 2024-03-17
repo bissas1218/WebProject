@@ -16,6 +16,7 @@ import common.DBConnection;
 /**
  * Servlet implementation class ReservMng
  */
+@WebServlet("/ReservMng")
 public class ReservMng extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

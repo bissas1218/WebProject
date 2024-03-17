@@ -17,7 +17,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
  -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script type="text/javascript" src="/chart/node_modules/chart.js/dist/chart.umd.js"></script>
+<script type="text/javascript" src="/js/Utils.js"></script>
 
 <script type="text/javascript">
 
@@ -470,12 +471,79 @@ function ajaxPostHashMap(){
 			</div>
 	</div>
 	<div id="content1">
-		<ul>
-			<li><a href="javascript:ajaxGetString();">Ajax String</a></li>
-			<li><a href="javascript:ajaxPostObject();">Ajax Object</a></li>
-			<li><a href="javascript:ajaxGetList();">Ajax list</a></li>
-			<li><a href="javascript:ajaxPostHashMap();">Ajax HashMap</a></li>
-		</ul>
+		<!-- Line Styling -->
+		<div class="stats">
+			<canvas id="lineStyling"></canvas>
+			<script>
+		
+				const lineStyling = document.getElementById('lineStyling');
+		
+				const DATA_COUNT5 = 7;
+				const NUMBER_CFG4 = {count: DATA_COUNT5, min: -100, max: 100};
+				const labels4 = Samples.utils.months({count: DATA_COUNT5});
+				
+				new Chart(lineStyling, {
+				    type: 'line',
+				    data: {
+				    	  labels: labels4,
+				    	  datasets: [
+				    	    {
+				    	      label: 'Unfilled',
+				    	      fill: false,
+				    	      backgroundColor: window.CHART_COLORS.blue,
+				    	      borderColor: window.CHART_COLORS.blue,
+				    	      data: Samples.utils.numbers(NUMBER_CFG4),
+				    	    }, {
+				    	      label: 'Dashed',
+				    	      fill: false,
+				    	      backgroundColor: window.CHART_COLORS.green,
+				    	      borderColor: window.CHART_COLORS.green,
+				    	      borderDash: [5, 5],
+				    	      data: Samples.utils.numbers(NUMBER_CFG4),
+				    	    }, {
+				    	      label: 'Filled',
+				    	      backgroundColor: window.CHART_COLORS.red,
+				    	      borderColor: window.CHART_COLORS.red,
+				    	      data: Samples.utils.numbers(NUMBER_CFG4),
+				    	      fill: true,
+				    	    }
+				    	  ]
+				    	}
+				    ,
+				    options: {
+				        responsive: true,
+				        plugins: {
+				          title: {
+				            display: true,
+				            text: 'Chart.js Line Chart'
+				          },
+				        },
+				        interaction: {
+				          mode: 'index',
+				          intersect: false
+				        },
+				        scales: {
+				          x: {
+				            display: true,
+				            title: {
+				              display: true,
+				              text: 'Month'
+				            }
+				          },
+				          y: {
+				            display: true,
+				            title: {
+				              display: true,
+				              text: 'Value'
+				            }
+				          }
+				        }
+				      }
+				  });
+			
+			</script>
+			
+		</div>
 	</div>
 	<div id="content_2"></div>
 	<div id="content1"></div>

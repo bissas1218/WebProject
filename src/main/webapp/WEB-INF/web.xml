@@ -9,6 +9,7 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
   <servlet>
     <description></description>
     <display-name>ViewDetail</display-name>
@@ -49,16 +50,7 @@
     <servlet-name>AjaxTest2</servlet-name>
     <url-pattern>/AjaxTest2</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>BoardList</display-name>
-    <servlet-name>BoardList</servlet-name>
-    <servlet-class>board.BoardList</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>BoardList</servlet-name>
-    <url-pattern>/BoardList</url-pattern>
-  </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>header</display-name>
@@ -69,26 +61,7 @@
     <servlet-name>header</servlet-name>
     <url-pattern>/header</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>BoardInsert</display-name>
-    <servlet-name>BoardInsert</servlet-name>
-    <servlet-class>board.BoardInsert</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>BoardInsert</servlet-name>
-    <url-pattern>/BoardInsert</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>BoardView</display-name>
-    <servlet-name>BoardView</servlet-name>
-    <servlet-class>board.BoardView</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>BoardView</servlet-name>
-    <url-pattern>/BoardView</url-pattern>
-  </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>ckeditor5Upload</display-name>
@@ -109,16 +82,7 @@
     <servlet-name>getImageForContents</servlet-name>
     <url-pattern>/getImageForContents</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>BoardUpdate</display-name>
-    <servlet-name>BoardUpdate</servlet-name>
-    <servlet-class>board.BoardUpdate</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>BoardUpdate</servlet-name>
-    <url-pattern>/BoardUpdate</url-pattern>
-  </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>ImageResizeTest</display-name>
@@ -129,44 +93,5 @@
     <servlet-name>ImageResizeTest</servlet-name>
     <url-pattern>/ImageResizeTest</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>UserReserv</display-name>
-    <servlet-name>UserReserv</servlet-name>
-    <servlet-class>reserv.UserReserv</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>UserReserv</servlet-name>
-    <url-pattern>/UserReserv</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>RservMng</display-name>
-    <servlet-name>RservMng</servlet-name>
-    <servlet-class>reserv.RservMng</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>RservMng</servlet-name>
-    <url-pattern>/RservMng</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ReservMng</display-name>
-    <servlet-name>ReservMng</servlet-name>
-    <servlet-class>reserv.ReservMng</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ReservMng</servlet-name>
-    <url-pattern>/ReservMng</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ReservList</display-name>
-    <servlet-name>ReservList</servlet-name>
-    <servlet-class>reserv.ReservList</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ReservList</servlet-name>
-    <url-pattern>/ReservList</url-pattern>
-  </servlet-mapping>
+  
 </web-app>

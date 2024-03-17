@@ -19,6 +19,7 @@ import common.DBConnection;
 /**
  * Servlet implementation class BoardView
  */
+@WebServlet("/BoardView")
 public class BoardView extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

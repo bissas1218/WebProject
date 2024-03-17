@@ -32,11 +32,16 @@ public class Main extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+    
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// 방문자 저장
+		new SaveAccessor(request, "Main");
+	    
 		DBConnection dbcon = new DBConnection();
 		Connection con = dbcon.dbConn();
 	//	System.out.println(con);

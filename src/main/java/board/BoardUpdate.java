@@ -17,6 +17,7 @@ import common.DBConnection;
 /**
  * Servlet implementation class BoardUpdate
  */
+@WebServlet("/BoardUpdate")
 public class BoardUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

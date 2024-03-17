@@ -34,3 +34,12 @@ VALUES('9999-12-31', '16:00', NULL, NULL);
 INSERT INTO bissas2.reserv
 (reserv_date, reserv_time, name, tel)
 VALUES('9999-12-31', '20:00', NULL, NULL);
+
+/**************** 방문자수 ****************************/
+drop table accessor;
+
+CREATE TABLE `accessor` (
+  `name` varchar(30) DEFAULT NULL,
+  `ip` varchar(15) DEFAULT NULL,
+  `reg_date` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
